@@ -25,7 +25,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
 
 /**
  * The heart of the Entity framework. It is responsible for keeping track of {@link Entity} and
- * managing {@link EntitySystem} objects. The Engine should be updated every tick via the {@link #update(float)} method.
+ * managing {@link EntitySystem} objects. The Engine should be updated every tick via the {@link #update(double)} method.
  *
  * With the Engine you can:
  *
