@@ -11,19 +11,12 @@ wrapper {
 subprojects {
     apply plugin: "java-library"
 
-    group = 'info.laht.ashley'
+    group = 'info.laht.aco'
     version = '0.1.0'
 
     repositories {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-        maven {
-            credentials {
-                username webUser
-                password webPw
-            }
-            url 'http://folk.ntnu.no/laht/mvn/'
-        }
     }
 
 }
@@ -32,13 +25,4 @@ ext {
     gdxVersion = "1.9.9"
     jUnitVersion = "4.12"
     mockitoVersion = "1.10.19"
-}
-
-/** needed to disable Java 8 doclint which throws errors **/
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
-    }
 }

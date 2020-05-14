@@ -1,4 +1,4 @@
-rootProject.name = 'ashley'
+rootProject.name = 'aco'
 
-include 'ashley'
+include 'core'
 include 'tests'
