@@ -1,2 +1,4 @@
-include 'ashley', 'tests', 'benchmarks'
+rootProject.name = 'ashley'
 
+include 'ashley'
+include 'tests'

@@ -20,10 +20,6 @@ Ashley lives under the [Libgdx](https://github.com/libgdx) family but it does no
 * [Read the examples](https://github.com/libgdx/ashley/tree/master/tests)
 
 
-### News and community
-
-Stay up to date in Ashley matters by following [@d_saltares](https://twitter.com/d_saltares) and reading [saltares.com](http://saltares.com). Check the [libgdx](http://www.badlogicgames.com/) blog as well for additional updates.
-
 ### Report issues
 
 Something not working quite as expected? Do you need a feature that has not been implemented yet? Check the [issue tracker](https://github.com/libgdx/ashley/issues) and add a new one if your problem is not already listed. Please try to provide a detailed description of your problem, including the steps to reproduce it.

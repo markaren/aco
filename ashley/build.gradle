@@ -1,16 +1,10 @@
-apply plugin: "java"
-sourceCompatibility = 1.6
 
-sourceSets.main.java.srcDirs = [ "src/" ]
-sourceSets.main.resources.srcDirs = [ "src/" ]
-sourceSets.test.java.srcDirs = [ "tests/" ]
-sourceSets.test.resources.srcDirs = [ "tests/" ]
+dependencies {
+    api "com.badlogicgames.gdx:gdx:$gdxVersion"
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+}
 
 javadoc {
     title = 'Ashley Entity System API'
 }
-
-eclipse.project {
-    name = projectGroup + "-core"
-}
-
