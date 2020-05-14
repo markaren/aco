@@ -1,13 +1,13 @@
 
 package com.badlogic.ashley.core;
 
-import org.junit.Assert;
-import org.junit.Test;
 import com.badlogic.ashley.signals.Listener;
 import com.badlogic.ashley.signals.Signal;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool.Poolable;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class PooledEngineTests {
 

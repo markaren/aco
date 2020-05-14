@@ -16,10 +16,10 @@
 
 package com.badlogic.ashley.utils;
 
-import java.util.Iterator;
-
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Array.ArrayIterable;
+
+import java.util.Iterator;
 
 /**
  * Wrapper class to treat {@link Array} objects as if they were immutable. However, note that the values could be modified if they

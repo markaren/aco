@@ -16,16 +16,10 @@
 
 package com.badlogic.ashley.systems;
 
-import com.badlogic.ashley.systems.IntervalIteratingSystem;
+import com.badlogic.ashley.core.*;
+import com.badlogic.ashley.utils.ImmutableArray;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.badlogic.ashley.core.Component;
-import com.badlogic.ashley.core.ComponentMapper;
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.utils.ImmutableArray;
 
 public class IntervalIteratingTest {
 

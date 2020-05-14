@@ -16,9 +16,9 @@
 
 package com.badlogic.ashley.signals;
 
+import com.badlogic.gdx.utils.Array;
 import org.junit.Assert;
 import org.junit.Test;
-import com.badlogic.gdx.utils.Array;
 
 public class SignalTests {
 

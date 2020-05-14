@@ -1,6 +1,5 @@
 package com.badlogic.ashley.core;
 
-import com.badlogic.ashley.core.Component;
 import org.mockito.asm.ClassWriter;
 import org.mockito.asm.MethodVisitor;
 import org.mockito.asm.Opcodes;

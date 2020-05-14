@@ -1,10 +1,9 @@
 package com.badlogic.ashley.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class ImmutableArrayTests {
 

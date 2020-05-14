@@ -16,14 +16,9 @@
 
 package com.badlogic.ashley.core;
 
-import com.badlogic.ashley.core.Component;
-import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.ashley.systems.IteratingSystem;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.badlogic.ashley.systems.IteratingSystem;
 
 @SuppressWarnings("unchecked")
 public class FamilyTests {

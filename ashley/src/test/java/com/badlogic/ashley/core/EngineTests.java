@@ -16,12 +16,12 @@
 
 package com.badlogic.ashley.core;
 
-import org.junit.Assert;
-import org.junit.Test;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import org.junit.Assert;
+import org.junit.Test;
 
 @SuppressWarnings("unchecked")
 public class EngineTests {

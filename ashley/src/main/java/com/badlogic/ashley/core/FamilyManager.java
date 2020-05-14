@@ -1,11 +1,7 @@
 package com.badlogic.ashley.core;
 
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Bits;
-import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.SnapshotArray;
+import com.badlogic.gdx.utils.*;
 
 class FamilyManager {
 	ImmutableArray<Entity> entities;

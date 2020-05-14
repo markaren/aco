@@ -16,9 +16,9 @@
 
 package com.badlogic.ashley.systems;
 
+import com.badlogic.ashley.core.Engine;
 import org.junit.Assert;
 import org.junit.Test;
-import com.badlogic.ashley.core.Engine;
 
 public class IntervalSystemTest {
 

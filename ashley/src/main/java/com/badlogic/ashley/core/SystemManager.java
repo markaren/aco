@@ -1,10 +1,10 @@
 package com.badlogic.ashley.core;
 
-import java.util.Comparator;
-
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
+
+import java.util.Comparator;
 
 class SystemManager {
 	private SystemComparator systemComparator = new SystemComparator();
