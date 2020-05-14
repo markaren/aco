@@ -14,17 +14,16 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.Component;
-import main.java.com.badlogic.ashley.core.Entity;
-import main.java.com.badlogic.ashley.core.Family;
-import main.java.com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
+import org.junit.Assert;
 import org.junit.Test;
 
-import main.java.com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.systems.IteratingSystem;
 
 @SuppressWarnings("unchecked")
 public class FamilyTests {
@@ -54,7 +53,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (Entity e, float d) {
+		public void processEntity (Entity e, double d) {
 		}
 	}
 
@@ -65,7 +64,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (Entity e, float d) {
+		public void processEntity (Entity e, double d) {
 		}
 	}
 

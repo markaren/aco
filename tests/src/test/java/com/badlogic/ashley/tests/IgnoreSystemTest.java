@@ -31,13 +31,13 @@ public class IgnoreSystemTest {
 		engine.addSystem(ignored);
 
 		for (int i = 0; i < 10; i++) {
-			engine.update(0.25f);
+			engine.update(0.25);
 		}
 	}
 
 	private static class CounterSystem extends EntitySystem {
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			log("Running " + getClass().getSimpleName());
 		}
 	}
@@ -53,7 +53,7 @@ public class IgnoreSystemTest {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			log("Running " + getClass().getSimpleName());
 		}
 	}
@@ -61,4 +61,5 @@ public class IgnoreSystemTest {
 	public static void log (String string) {
 		System.out.println(string);
 	}
+
 }

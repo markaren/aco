@@ -1,10 +1,8 @@
-package test.java.com.badlogic.ashley.core;
-import static org.junit.Assert.*;
+package com.badlogic.ashley.core;
 
-import main.java.com.badlogic.ashley.core.*;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 

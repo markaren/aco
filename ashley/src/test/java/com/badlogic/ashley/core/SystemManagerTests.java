@@ -1,14 +1,9 @@
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.Engine;
-import main.java.com.badlogic.ashley.core.EntitySystem;
-import main.java.com.badlogic.ashley.core.SystemManager;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.core.SystemManager.SystemListener;
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.ashley.core.SystemManager.SystemListener;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 
 public class SystemManagerTests {
@@ -47,7 +42,7 @@ public class SystemManagerTests {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			if (updates != null) {
 				updates.add(priority);
 			}

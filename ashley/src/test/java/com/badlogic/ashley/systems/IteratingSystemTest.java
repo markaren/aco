@@ -14,19 +14,17 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.systems;
+package com.badlogic.ashley.systems;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import main.java.com.badlogic.ashley.core.Component;
-import main.java.com.badlogic.ashley.core.ComponentMapper;
-import main.java.com.badlogic.ashley.core.Engine;
-import main.java.com.badlogic.ashley.core.Entity;
-import main.java.com.badlogic.ashley.core.Family;
-import main.java.com.badlogic.ashley.systems.IteratingSystem;
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
-
-import static org.junit.Assert.*;
+import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
 
 public class IteratingSystemTest {
 	private static final float deltaTime = 0.16f;
@@ -41,6 +39,7 @@ public class IteratingSystemTest {
 	}
 
 	private static class IteratingSystemMock extends IteratingSystem {
+
 		public int numUpdates;
 
 		public IteratingSystemMock (Family family) {
@@ -48,7 +47,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, float deltaTime) {
+		public void processEntity (Entity entity, double deltaTime) {
 			++numUpdates;
 		}
 	}
@@ -74,7 +73,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, float deltaTime) {
+		public void processEntity (Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				entity.remove(SpyComponent.class);
@@ -103,7 +102,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, float deltaTime) {
+		public void processEntity (Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				getEngine().removeEntity(entity);

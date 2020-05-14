@@ -1,11 +1,9 @@
 
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.mockito.Mockito.*;
-
-import main.java.com.badlogic.ashley.core.*;
 import org.junit.Test;
 import org.mockito.InOrder;
+import org.mockito.Mockito;
 
 public class EntityListenerTests {
 

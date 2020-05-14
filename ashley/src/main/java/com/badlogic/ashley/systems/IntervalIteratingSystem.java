@@ -28,6 +28,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
  * @author David Saltares
  */
 public abstract class IntervalIteratingSystem extends IntervalSystem {
+
 	private Family family;
 	private ImmutableArray<Entity> entities;
 
@@ -35,7 +36,7 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 	 * @param family represents the collection of family the system should process
 	 * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval()}.
 	 */
-	public IntervalIteratingSystem (Family family, float interval) {
+	public IntervalIteratingSystem (Family family, double interval) {
 		this(family, interval, 0);
 	}
 
@@ -44,7 +45,7 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 	 * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval()}.
 	 * @param priority
 	 */
-	public IntervalIteratingSystem (Family family, float interval, int priority) {
+	public IntervalIteratingSystem (Family family, double interval, int priority) {
 		super(interval, priority);
 		this.family = family;
 	}
@@ -80,4 +81,5 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 	 * @param entity
 	 */
 	protected abstract void processEntity (Entity entity);
+
 }

@@ -34,6 +34,7 @@ import java.util.Comparator;
  * @author Santo Pfingsten
  */
 public abstract class SortedIteratingSystem extends EntitySystem implements EntityListener {
+
 	private Family family;
 	private Array<Entity> sortedEntities;
 	private final ImmutableArray<Entity> entities;
@@ -112,7 +113,7 @@ public abstract class SortedIteratingSystem extends EntitySystem implements Enti
 	}
 
 	@Override
-	public void update (float deltaTime) {
+	public void update (double deltaTime) {
 		sort();
 		for (int i = 0; i < sortedEntities.size; ++i) {
 			processEntity(sortedEntities.get(i), deltaTime);
@@ -140,5 +141,6 @@ public abstract class SortedIteratingSystem extends EntitySystem implements Enti
 	 * @param entity The current Entity being processed
 	 * @param deltaTime The delta time between the last and current frame
 	 */
-	protected abstract void processEntity (Entity entity, float deltaTime);
+	protected abstract void processEntity (Entity entity, double deltaTime);
+
 }

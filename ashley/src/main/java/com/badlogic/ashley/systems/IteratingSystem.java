@@ -61,7 +61,7 @@ public abstract class IteratingSystem extends EntitySystem {
 	}
 
 	@Override
-	public void update (float deltaTime) {
+	public void update (double deltaTime) {
 		for (int i = 0; i < entities.size(); ++i) {
 			processEntity(entities.get(i), deltaTime);
 		}
@@ -87,5 +87,5 @@ public abstract class IteratingSystem extends EntitySystem {
 	 * @param entity The current Entity being processed
 	 * @param deltaTime The delta time between the last and current frame
 	 */
-	protected abstract void processEntity (Entity entity, float deltaTime);
+	protected abstract void processEntity (Entity entity, double deltaTime);
 }

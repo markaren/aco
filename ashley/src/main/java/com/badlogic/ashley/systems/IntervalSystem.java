@@ -24,13 +24,14 @@ import com.badlogic.ashley.core.EntitySystem;
  * @author David Saltares
  */
 public abstract class IntervalSystem extends EntitySystem {
-	private float interval;
-	private float accumulator;
+
+	private double interval;
+	private double accumulator;
 
 	/**
 	 * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
 	 */
-	public IntervalSystem (float interval) {
+	public IntervalSystem (double interval) {
 		this(interval, 0);
 	}
 
@@ -38,18 +39,18 @@ public abstract class IntervalSystem extends EntitySystem {
 	 * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
 	 * @param priority
 	 */
-	public IntervalSystem (float interval, int priority) {
+	public IntervalSystem (double interval, int priority) {
 		super(priority);
 		this.interval = interval;
 		this.accumulator = 0;
 	}
 
-	public float getInterval() {
+	public double getInterval() {
 		return interval;
 	}
 
 	@Override
-	public final void update (float deltaTime) {
+	public final void update (double deltaTime) {
 		accumulator += deltaTime;
 
 		while (accumulator >= interval) {
@@ -62,4 +63,5 @@ public abstract class IntervalSystem extends EntitySystem {
 	 * The processing logic of the system should be placed here.
 	 */
 	protected abstract void updateInterval ();
+
 }

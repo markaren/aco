@@ -1,13 +1,8 @@
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.Entity;
-import main.java.com.badlogic.ashley.core.EntityListener;
-import main.java.com.badlogic.ashley.core.EntityManager;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 
 public class EntityManagerTests {

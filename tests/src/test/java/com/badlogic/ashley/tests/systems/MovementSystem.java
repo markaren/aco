@@ -24,6 +24,7 @@ import com.badlogic.ashley.tests.components.MovementComponent;
 import com.badlogic.ashley.tests.components.PositionComponent;
 
 public class MovementSystem extends IteratingSystem {
+
 	private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 	private ComponentMapper<MovementComponent> mm = ComponentMapper.getFor(MovementComponent.class);
 
@@ -32,11 +33,12 @@ public class MovementSystem extends IteratingSystem {
 	}
 
 	@Override
-	public void processEntity (Entity entity, float deltaTime) {
+	public void processEntity (Entity entity, double deltaTime) {
 		PositionComponent position = pm.get(entity);
 		MovementComponent movement = mm.get(entity);
 
 		position.x += movement.velocityX * deltaTime;
 		position.y += movement.velocityY * deltaTime;
 	}
+
 }

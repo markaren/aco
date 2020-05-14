@@ -14,22 +14,22 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.systems;
+package com.badlogic.ashley.systems;
 
-import main.java.com.badlogic.ashley.core.Component;
-import main.java.com.badlogic.ashley.core.ComponentMapper;
-import main.java.com.badlogic.ashley.core.Engine;
-import main.java.com.badlogic.ashley.core.Entity;
-import main.java.com.badlogic.ashley.core.Family;
-import main.java.com.badlogic.ashley.systems.SortedIteratingSystem;
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class SortedIteratingSystemTest {
+
 	private static final ComponentMapper<OrderComponent> orderMapper = ComponentMapper.getFor(OrderComponent.class);
 	private static final OrderComparator comparator = new OrderComparator();
 	private static final float deltaTime = 0.16f;
@@ -48,13 +48,13 @@ public class SortedIteratingSystemTest {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			super.update(deltaTime);
 			Assert.assertTrue(expectedNames.isEmpty());
 		}
 
 		@Override
-		public void processEntity (Entity entity, float deltaTime) {
+		public void processEntity (Entity entity, double deltaTime) {
 			OrderComponent component = orderMapper.get(entity);
 			Assert.assertNotNull(component);
 			Assert.assertFalse(expectedNames.isEmpty());
@@ -93,7 +93,7 @@ public class SortedIteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, float deltaTime) {
+		public void processEntity (Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				entity.remove(SpyComponent.class);
@@ -125,7 +125,7 @@ public class SortedIteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, float deltaTime) {
+		public void processEntity (Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				engine.removeEntity(entity);

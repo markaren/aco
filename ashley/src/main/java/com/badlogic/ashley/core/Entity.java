@@ -53,8 +53,8 @@ public class Entity {
 		familyBits = new Bits();
 		flags = 0;
 
-		componentAdded = new Signal<Entity>();
-		componentRemoved = new Signal<Entity>();
+		componentAdded = new Signal<>();
+		componentRemoved = new Signal<>();
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class Entity {
 	 * Adds a {@link Component} to this Entity. If a {@link Component} of the same type already exists, it'll be replaced.
 	 * @return The Component for direct component manipulation (e.g. PooledComponent)
 	 */
-	public Component addAndReturn(Component component) {
+	public <E extends Component> E addAndReturn(E component) {
 		add(component);
 		return component;
 	}

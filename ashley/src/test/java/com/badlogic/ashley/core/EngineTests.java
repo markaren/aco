@@ -14,22 +14,19 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.*;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.systems.IteratingSystem;
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 @SuppressWarnings("unchecked")
 public class EngineTests {
 
-	private float deltaTime = 0.16f;
+	private double deltaTime = 0.16;
 
 	private static class ComponentA implements Component {
 	}
@@ -71,6 +68,7 @@ public class EngineTests {
 	}
 
 	private static class EntitySystemMock extends EntitySystem {
+
 		public int updateCalls = 0;
 		public int addedCalls = 0;
 		public int removedCalls = 0;
@@ -83,12 +81,11 @@ public class EngineTests {
 
 		public EntitySystemMock (Array<Integer> updates) {
 			super();
-
 			this.updates = updates;
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			++updateCalls;
 
 			if (updates != null) {
@@ -99,14 +96,12 @@ public class EngineTests {
 		@Override
 		public void addedToEngine (Engine engine) {
 			++addedCalls;
-
 			Assert.assertNotNull(engine);
 		}
 
 		@Override
 		public void removedFromEngine (Engine engine) {
 			++removedCalls;
-
 			Assert.assertNotNull(engine);
 		}
 	}
@@ -146,7 +141,7 @@ public class EngineTests {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			for (int i = 0; i < entities.size(); ++i) {
 				if (i % 2 == 0) {
 					entities.get(i).getComponent(CounterComponent.class).counter++;
@@ -565,6 +560,7 @@ public class EngineTests {
 	}
 	
 	public class ComponentAddSystem extends IteratingSystem {
+
 		private ComponentAddedListener listener; 
 		
 		public ComponentAddSystem (ComponentAddedListener listener) {
@@ -573,7 +569,7 @@ public class EngineTests {
 		}
 
 		@Override
-		protected void processEntity (Entity entity, float deltaTime) {
+		protected void processEntity (Entity entity, double deltaTime) {
 			Assert.assertNull(entity.getComponent(ComponentA.class));
 			entity.add(new ComponentA());
 			Assert.assertNotNull(entity.getComponent(ComponentA.class));
@@ -582,6 +578,7 @@ public class EngineTests {
 	}
 	
 	public class ComponentRemoveSystem extends IteratingSystem {
+
 		private ComponentRemovedListener listener; 
 		
 		public ComponentRemoveSystem (ComponentRemovedListener listener) {
@@ -590,7 +587,7 @@ public class EngineTests {
 		}
 
 		@Override
-		protected void processEntity (Entity entity, float deltaTime) {
+		protected void processEntity (Entity entity, double deltaTime) {
 			Assert.assertNotNull(entity.getComponent(ComponentA.class));
 			entity.remove(ComponentA.class);
 			Assert.assertNull(entity.getComponent(ComponentA.class));
@@ -742,7 +739,7 @@ public class EngineTests {
 		// listeners cascade creations (up to 20)
 		EntitySystem addSystem = new EntitySystem() {
 			@Override
-			public void update(float deltaTime) {
+			public void update(double deltaTime) {
 				getEngine().addEntity(new Entity());
 			}
 		};
@@ -757,7 +754,7 @@ public class EngineTests {
 		// listeners cascade deletion (up to 0)
 		EntitySystem removeSystem = new EntitySystem() {
 			@Override
-			public void update(float deltaTime) {
+			public void update(double deltaTime) {
 				getEngine().removeEntity(entities.peek());
 			}
 		};
@@ -908,7 +905,7 @@ public class EngineTests {
 			boolean duringCallback;
 			
 			@Override
-			public void update(float deltaTime) {
+			public void update(double deltaTime) {
 				if (!duringCallback) {
 					duringCallback = true;
 					getEngine().update(deltaTime);
@@ -926,7 +923,7 @@ public class EngineTests {
 		
 		EntitySystem system = new EntitySystem() {
 			@Override
-			public void update(float deltaTime) {
+			public void update(double deltaTime) {
 				throw new GdxRuntimeException("throwing");
 			}
 		};

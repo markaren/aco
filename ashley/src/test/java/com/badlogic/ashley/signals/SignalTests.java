@@ -14,14 +14,10 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.signals;
+package com.badlogic.ashley.signals;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.signals.Listener;
-import main.java.com.badlogic.ashley.signals.Signal;
 import com.badlogic.gdx.utils.Array;
 
 public class SignalTests {

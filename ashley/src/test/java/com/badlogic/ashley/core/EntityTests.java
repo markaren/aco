@@ -14,18 +14,12 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.Component;
-import main.java.com.badlogic.ashley.core.ComponentMapper;
-import main.java.com.badlogic.ashley.core.ComponentType;
-import main.java.com.badlogic.ashley.core.Entity;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.signals.Listener;
-import main.java.com.badlogic.ashley.signals.Signal;
+import com.badlogic.ashley.signals.Listener;
+import com.badlogic.ashley.signals.Signal;
 import com.badlogic.gdx.utils.Bits;
 
 public class EntityTests {

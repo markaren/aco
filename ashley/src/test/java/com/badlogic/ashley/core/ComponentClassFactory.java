@@ -1,6 +1,6 @@
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import main.java.com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Component;
 import org.mockito.asm.ClassWriter;
 import org.mockito.asm.MethodVisitor;
 import org.mockito.asm.Opcodes;
@@ -66,4 +66,5 @@ public class ComponentClassFactory extends ClassLoader
 		byte[] b = cw.toByteArray();
 		return (Class<? extends Component>)defineClass(name, b, 0, b.length);
     }
+
 }

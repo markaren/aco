@@ -14,22 +14,22 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.systems;
+package com.badlogic.ashley.systems;
 
-import main.java.com.badlogic.ashley.systems.IntervalIteratingSystem;
+import com.badlogic.ashley.systems.IntervalIteratingSystem;
+import org.junit.Assert;
 import org.junit.Test;
 
-import main.java.com.badlogic.ashley.core.Component;
-import main.java.com.badlogic.ashley.core.ComponentMapper;
-import main.java.com.badlogic.ashley.core.Engine;
-import main.java.com.badlogic.ashley.core.Entity;
-import main.java.com.badlogic.ashley.core.Family;
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
-
-import static org.junit.Assert.*;
+import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
 
 public class IntervalIteratingTest {
-	private static final float deltaTime = 0.1f;
+
+	private static final double deltaTime = 0.1;
 
 	private static class IntervalComponentSpy implements Component {
 		public int numUpdates = 0;
@@ -39,7 +39,7 @@ public class IntervalIteratingTest {
 		private ComponentMapper<IntervalComponentSpy> im;
 
 		public IntervalIteratingSystemSpy () {
-			super(Family.all(IntervalComponentSpy.class).get(), deltaTime * 2.0f);
+			super(Family.all(IntervalComponentSpy.class).get(), deltaTime * 2);
 
 			im = ComponentMapper.getFor(IntervalComponentSpy.class);
 		}

@@ -96,7 +96,7 @@ public class BasicTest {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 
 			for (int i = 0; i < entities.size(); ++i) {
 				Entity e = entities.get(i);

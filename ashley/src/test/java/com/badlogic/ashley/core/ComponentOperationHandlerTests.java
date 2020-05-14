@@ -1,18 +1,15 @@
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.ComponentOperationHandler;
-import main.java.com.badlogic.ashley.core.Entity;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.core.ComponentOperationHandler.BooleanInformer;
-import main.java.com.badlogic.ashley.signals.Listener;
-import main.java.com.badlogic.ashley.signals.Signal;
+import com.badlogic.ashley.core.ComponentOperationHandler.BooleanInformer;
+import com.badlogic.ashley.signals.Listener;
+import com.badlogic.ashley.signals.Signal;
 
 public class ComponentOperationHandlerTests {
 
 	private static class BooleanInformerMock implements BooleanInformer {
+
 		public boolean delayed = false;
 		
 		@Override

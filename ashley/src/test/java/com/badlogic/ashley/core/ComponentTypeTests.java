@@ -14,14 +14,10 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.core.Component;
-import main.java.com.badlogic.ashley.core.ComponentType;
 
 public class ComponentTypeTests {
 

@@ -1,10 +1,10 @@
+plugins {
+    id 'kotlin'
+}
 
 dependencies {
     api "com.badlogicgames.gdx:gdx:$gdxVersion"
+
     testImplementation "junit:junit:$jUnitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
-}
-
-javadoc {
-    title = 'Ashley Entity System API'
 }

@@ -21,6 +21,7 @@ package com.badlogic.ashley.core;
  * @author Stefan Bachmann
  */
 public abstract class EntitySystem {
+
 	/** Use this to set the priority of the system. Lower means it'll get executed first. */
 	public int priority;
 
@@ -55,11 +56,15 @@ public abstract class EntitySystem {
 	public void removedFromEngine (Engine engine) {
 	}
 
+	public void preInit() {}
+
+	public void postInit() {}
+
 	/**
 	 * The update method called every tick.
 	 * @param deltaTime The time passed since last frame in seconds.
 	 */
-	public void update (float deltaTime) {
+	public void update (double deltaTime) {
 	}
 
 	/** @return Whether or not the system should be processed. */
@@ -87,4 +92,5 @@ public abstract class EntitySystem {
 		this.engine = null;
 		removedFromEngine(engine);
 	}
+
 }

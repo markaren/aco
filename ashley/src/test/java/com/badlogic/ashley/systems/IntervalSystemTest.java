@@ -14,23 +14,22 @@
  * limitations under the License.
  ******************************************************************************/
 
-package test.java.com.badlogic.ashley.systems;
+package com.badlogic.ashley.systems;
 
-import main.java.com.badlogic.ashley.systems.IntervalSystem;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.core.Engine;
-
-import static org.junit.Assert.*;
+import com.badlogic.ashley.core.Engine;
 
 public class IntervalSystemTest {
-	private static final float deltaTime = 0.1f;
+
+	private static final double deltaTime = 0.1;
 
 	private static class IntervalSystemSpy extends IntervalSystem {
+
 		public int numUpdates;
 
 		public IntervalSystemSpy () {
-			super(deltaTime * 2.0f);
+			super(deltaTime * 2);
 		}
 
 		@Override

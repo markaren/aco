@@ -36,7 +36,7 @@ public class SystemPriorityTest {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			System.out.println("SystemA");
 		}
 
@@ -48,8 +48,9 @@ public class SystemPriorityTest {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			System.out.println("SystemB");
 		}
 	}
+
 }

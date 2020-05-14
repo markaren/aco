@@ -1,9 +1,6 @@
+package com.badlogic.ashley.utils;
 
-package test.java.com.badlogic.ashley.utils;
-
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.badlogic.gdx.utils.Array;

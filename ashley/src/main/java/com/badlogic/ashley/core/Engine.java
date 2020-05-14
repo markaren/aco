@@ -224,7 +224,7 @@ public class Engine {
 	 * Updates all the systems in this Engine.
 	 * @param deltaTime The time passed since the last frame.
 	 */
-	public void update(float deltaTime){
+	public void update(double deltaTime){
 		if (updating) {
 			throw new IllegalStateException("Cannot call update() on an Engine that is already updating.");
 		}

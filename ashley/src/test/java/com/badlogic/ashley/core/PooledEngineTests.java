@@ -1,19 +1,17 @@
 
-package test.java.com.badlogic.ashley.core;
+package com.badlogic.ashley.core;
 
-import static org.junit.Assert.*;
-
-import main.java.com.badlogic.ashley.core.*;
+import org.junit.Assert;
 import org.junit.Test;
-
-import main.java.com.badlogic.ashley.signals.Listener;
-import main.java.com.badlogic.ashley.signals.Signal;
-import main.java.com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.ashley.signals.Listener;
+import com.badlogic.ashley.signals.Signal;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 public class PooledEngineTests {
-	private float deltaTime = 0.16f;
+
+	private double deltaTime = 0.16;
 
 	private final ComponentMapper<PoolableComponent> poolableMapper = ComponentMapper.getFor(PoolableComponent.class);
 
@@ -61,7 +59,7 @@ public class PooledEngineTests {
 		}
 
 		@Override
-		public void update (float deltaTime) {
+		public void update (double deltaTime) {
 			if (counter >= 6 && counter <= 8) {
 				getEngine().removeEntity(allEntities.get(2));
 			}

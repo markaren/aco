@@ -28,6 +28,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class RenderSystem extends EntitySystem {
+
 	private ImmutableArray<Entity> entities;
 
 	private SpriteBatch batch;
@@ -53,7 +54,7 @@ public class RenderSystem extends EntitySystem {
 	}
 
 	@Override
-	public void update (float deltaTime) {
+	public void update (double deltaTime) {
 		PositionComponent position;
 		VisualComponent visual;
 

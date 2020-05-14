@@ -1,12 +1,12 @@
 package com.badlogic.ashley.core;
 
-
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectSet;
 import com.badlogic.gdx.utils.Pool;
 
 class EntityManager {
+
 	private EntityListener listener;
 	private Array<Entity> entities = new Array<Entity>(false, 16);
 	private ObjectSet<Entity> entitySet = new ObjectSet<Entity>();
@@ -159,4 +159,5 @@ class EntityManager {
 			return new EntityOperation();
 		}
 	}
+
 }
