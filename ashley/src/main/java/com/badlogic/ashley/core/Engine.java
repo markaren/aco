@@ -40,15 +40,16 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  * @author Stefan Bachmann
  */
 public class Engine {
-	private static Family empty = Family.all().get();
+
+	private static final Family empty = Family.all().get();
 	
 	private final Listener<Entity> componentAdded = new ComponentListener();
 	private final Listener<Entity> componentRemoved = new ComponentListener();
 	
-	private SystemManager systemManager = new SystemManager(new EngineSystemListener());
-	private EntityManager entityManager = new EntityManager(new EngineEntityListener());
-	private ComponentOperationHandler componentOperationHandler = new ComponentOperationHandler(new EngineDelayedInformer());
-	private FamilyManager familyManager = new FamilyManager(entityManager.getEntities());	
+	private final SystemManager systemManager = new SystemManager(new EngineSystemListener());
+	private final EntityManager entityManager = new EntityManager(new EngineEntityListener());
+	private final ComponentOperationHandler componentOperationHandler = new ComponentOperationHandler(new EngineDelayedInformer());
+	private final FamilyManager familyManager = new FamilyManager(entityManager.getEntities());
 	private boolean updating;
 
 	/**
