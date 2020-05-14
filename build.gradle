@@ -12,9 +12,19 @@ wrapper {
 subprojects {
     apply plugin: "java-library"
 
+    group = 'info.laht.ashley'
+    version = '0.1.0'
+
     repositories {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven {
+            credentials {
+                username webUser
+                password webPw
+            }
+            url 'http://folk.ntnu.no/laht/mvn/'
+        }
     }
 
     pluginManager.withPlugin('kotlin') {
