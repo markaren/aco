@@ -7,11 +7,12 @@ import com.badlogic.gdx.utils.ObjectMap;
 import java.util.Comparator;
 
 class SystemManager {
-	private SystemComparator systemComparator = new SystemComparator();
-	private Array<EntitySystem> systems = new Array<EntitySystem>(true, 16);
-	private ImmutableArray<EntitySystem> immutableSystems = new ImmutableArray<EntitySystem>(systems);
-	private ObjectMap<Class<?>, EntitySystem> systemsByClass = new ObjectMap<Class<?>, EntitySystem>();
-	private SystemListener listener;
+
+	private final SystemComparator systemComparator = new SystemComparator();
+	private final Array<EntitySystem> systems = new Array<EntitySystem>(true, 16);
+	private final ImmutableArray<EntitySystem> immutableSystems = new ImmutableArray<EntitySystem>(systems);
+	private final ObjectMap<Class<?>, EntitySystem> systemsByClass = new ObjectMap<Class<?>, EntitySystem>();
+	private final SystemListener listener;
 	
 	public SystemManager(SystemListener listener) {
 		this.listener = listener;
@@ -56,7 +57,7 @@ class SystemManager {
 	private static class SystemComparator implements Comparator<EntitySystem>{
 		@Override
 		public int compare(EntitySystem a, EntitySystem b) {
-			return a.priority > b.priority ? 1 : (a.priority == b.priority) ? 0 : -1;
+			return Integer.compare(a.priority, b.priority);
 		}
 	}
 	
@@ -64,4 +65,5 @@ class SystemManager {
 		void systemAdded(EntitySystem system);
 		void systemRemoved(EntitySystem system);
 	}
+
 }

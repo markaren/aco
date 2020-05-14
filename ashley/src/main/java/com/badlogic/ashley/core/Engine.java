@@ -23,6 +23,9 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 /**
  * The heart of the Entity framework. It is responsible for keeping track of {@link Entity} and
  * managing {@link EntitySystem} objects. The Engine should be updated every tick via the {@link #update(double)} method.
@@ -39,7 +42,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  *
  * @author Stefan Bachmann
  */
-public class Engine {
+public class Engine implements Closeable {
 
 	private static final Family empty = Family.all().get();
 	
@@ -50,6 +53,8 @@ public class Engine {
 	private final EntityManager entityManager = new EntityManager(new EngineEntityListener());
 	private final ComponentOperationHandler componentOperationHandler = new ComponentOperationHandler(new EngineDelayedInformer());
 	private final FamilyManager familyManager = new FamilyManager(entityManager.getEntities());
+
+	private boolean initialized;
 	private boolean updating;
 
 	/**
@@ -221,20 +226,39 @@ public class Engine {
 		familyManager.removeEntityListener(listener);
 	}
 
+	public void init() {
+		if (!initialized) {
+			initialized = true;
+			ImmutableArray<EntitySystem> systems = systemManager.getSystems();
+			for (EntitySystem system : systems) {
+				if (system.checkProcessing()) {
+					system.preInit();
+				}
+			}
+			for (EntitySystem system : systems) {
+				if (system.checkProcessing()) {
+					system.postInit();
+				}
+			}
+		}
+	}
+
 	/**
 	 * Updates all the systems in this Engine.
 	 * @param deltaTime The time passed since the last frame.
 	 */
-	public void update(double deltaTime){
+	public void update(double deltaTime) {
 		if (updating) {
 			throw new IllegalStateException("Cannot call update() on an Engine that is already updating.");
+		}
+		if (!initialized) {
+			init();
 		}
 		
 		updating = true;
 		ImmutableArray<EntitySystem> systems = systemManager.getSystems();
 		try {
-			for (int i = 0; i < systems.size(); ++i) {
-				EntitySystem system = systems.get(i);
+			for (EntitySystem system : systems) {
 				
 				if (system.checkProcessing()) {
 					system.update(deltaTime);
@@ -250,7 +274,25 @@ public class Engine {
 			updating = false;
 		}	
 	}
-	
+
+	public void terminate() {
+		if (updating) {
+			throw new IllegalStateException("Cannot call terminate() on an Engine that is updating.");
+		}
+
+		ImmutableArray<EntitySystem> systems = systemManager.getSystems();
+		for (EntitySystem system : systems) {
+			if (system.checkProcessing()) {
+				system.terminate();
+			}
+		}
+	}
+
+	@Override
+	public void close() throws IOException {
+		terminate();
+	}
+
 	protected void addEntityInternal(Entity entity) {
 		entity.componentAdded.add(componentAdded);
 		entity.componentRemoved.add(componentRemoved);

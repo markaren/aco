@@ -27,6 +27,7 @@ import com.badlogic.gdx.utils.Bits;
  * @author Stefan Bachmann
  */
 public class Entity {
+
 	/** A flag that can be used to bit mask this entity. Up to the user to manage. */
 	public int flags;
 	/** Will dispatch an event when a component is added. */
@@ -38,11 +39,11 @@ public class Entity {
 	boolean removing;
 	ComponentOperationHandler componentOperationHandler;
 
-	private Bag<Component> components;
-	private Array<Component> componentsArray;
-	private ImmutableArray<Component> immutableComponentsArray;
-	private Bits componentBits;
-	private Bits familyBits;
+	private final Bag<Component> components;
+	private final Array<Component> componentsArray;
+	private final ImmutableArray<Component> immutableComponentsArray;
+	private final Bits componentBits;
+	private final Bits familyBits;
 
 	/** Creates an empty Entity. */
 	public Entity () {
