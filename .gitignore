@@ -9,6 +9,7 @@
 .gradle
 build/
 dist/
+gradle.properties
 
 # Intellij
 .idea/
