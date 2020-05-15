@@ -21,47 +21,48 @@ import info.laht.aco.core.EntitySystem;
 /**
  * A simple {@link EntitySystem} that does not run its update logic every call to {@link EntitySystem#update(float)}, but after a
  * given interval. The actual logic should be placed in {@link IntervalSystem#updateInterval()}.
+ *
  * @author David Saltares
  */
 public abstract class IntervalSystem extends EntitySystem {
 
-	private final double interval;
-	private double accumulator;
+    private final double interval;
+    private double accumulator;
 
-	/**
-	 * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
-	 */
-	public IntervalSystem (double interval) {
-		this(interval, 0);
-	}
+    /**
+     * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
+     */
+    public IntervalSystem(double interval) {
+        this(interval, 0);
+    }
 
-	/**
-	 * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
-	 * @param priority
-	 */
-	public IntervalSystem (double interval, int priority) {
-		super(priority);
-		this.interval = interval;
-		this.accumulator = 0;
-	}
+    /**
+     * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
+     * @param priority
+     */
+    public IntervalSystem(double interval, int priority) {
+        super(priority);
+        this.interval = interval;
+        this.accumulator = 0;
+    }
 
-	public double getInterval() {
-		return interval;
-	}
+    public double getInterval() {
+        return interval;
+    }
 
-	@Override
-	public final void update (double deltaTime) {
-		accumulator += deltaTime;
+    @Override
+    public final void update(double deltaTime) {
+        accumulator += deltaTime;
 
-		while (accumulator >= interval) {
-			accumulator -= interval;
-			updateInterval();
-		}
-	}
+        while (accumulator >= interval) {
+            accumulator -= interval;
+            updateInterval();
+        }
+    }
 
-	/**
-	 * The processing logic of the system should be placed here.
-	 */
-	protected abstract void updateInterval ();
+    /**
+     * The processing logic of the system should be placed here.
+     */
+    protected abstract void updateInterval();
 
 }

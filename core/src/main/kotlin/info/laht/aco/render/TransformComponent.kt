@@ -4,7 +4,7 @@ import info.laht.aco.core.Component
 import org.joml.*
 import java.lang.Math
 
-class TransformComponent: Component {
+class TransformComponent : Component {
 
     var autoUpdate = true
     var parent: TransformComponent? = null
@@ -259,5 +259,5 @@ class TransformComponent: Component {
             e.y
         ) + DEGREE + ", z=" + Math.toDegrees(e.z) + DEGREE + "]}"
     }
-    
+
 }

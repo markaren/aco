@@ -35,7 +35,7 @@ interface EntityListener {
     fun entityRemoved(entity: Entity)
 }
 
-abstract class EntityAdapter: EntityListener {
+abstract class EntityAdapter : EntityListener {
 
     override fun entityAdded(entity: Entity) {
 

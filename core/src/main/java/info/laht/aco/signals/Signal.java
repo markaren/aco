@@ -25,11 +25,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  */
 public class Signal<T> {
 
-	private final SnapshotArray<Listener<T>> listeners;
-
-	public Signal () {
-		listeners = new SnapshotArray<>();
-	}
+	private final SnapshotArray<Listener<T>> listeners = new SnapshotArray<>();
 
 	/**
 	 * Add a Listener to this Signal

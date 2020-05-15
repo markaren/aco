@@ -1,7 +1,7 @@
 package info.laht.aco.core;
 
-import info.laht.aco.utils.ImmutableArray;
 import com.badlogic.gdx.utils.*;
+import info.laht.aco.utils.ImmutableArray;
 
 class FamilyManager {
 
@@ -20,7 +20,7 @@ class FamilyManager {
 	public ImmutableArray<Entity> getEntitiesFor(Family family) {
 		return registerFamily(family);
 	}
-	
+
 	public boolean notifying() {
 		return notifying;
 	}

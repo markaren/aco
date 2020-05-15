@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 /**
  * Uniquely identifies a {@link Component} sub-class. It assigns them an index which is used internally for fast comparison and
  * retrieval. See {@link Family} and {@link Entity}. ComponentType is a package protected class. You cannot instantiate a
- * ComponentType. They can only be accessed via {@link #getIndexFor(Class<? extends Component>)}. Each component class will always
+ * ComponentType. They can only be accessed via {@link ComponentType::getIndexFor(Class<? extends Component>)}. Each component class will always
  * return the same instance of ComponentType.
  *
  * @author Stefan Bachmann
@@ -75,6 +75,7 @@ public final class ComponentType {
      * @return Bits representing the collection of components for quick comparison and matching. See
      * {@link Family::getFor(Bits, Bits, Bits)}.
      */
+    @SafeVarargs
     public static Bits getBitsFor(Class<? extends Component>... componentTypes) {
         Bits bits = new Bits();
 

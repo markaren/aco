@@ -6,93 +6,92 @@ import com.badlogic.gdx.utils.Pool;
 
 class ComponentOperationHandler {
 
-	private final BooleanInformer delayed;
-	private final ComponentOperationPool operationPool = new ComponentOperationPool();
-	private final Array<ComponentOperation> operations = new Array<>();
+    private final BooleanInformer delayed;
+    private final ComponentOperationPool operationPool = new ComponentOperationPool();
+    private final Array<ComponentOperation> operations = new Array<>();
 
-	public ComponentOperationHandler(BooleanInformer delayed) {
- 		this.delayed = delayed;
- 	}
- 	
-	public void add(Entity entity) {
-		if (delayed.value()) {
-			ComponentOperation operation = operationPool.obtain();
-			operation.makeAdd(entity);
-			operations.add(operation);
-		}
-		else {
-			entity.notifyComponentAdded();
-		}
-	}
+    public ComponentOperationHandler(BooleanInformer delayed) {
+        this.delayed = delayed;
+    }
 
-	public void remove(Entity entity) {
-		if (delayed.value()) {
-			ComponentOperation operation = operationPool.obtain();
-			operation.makeRemove(entity);
-			operations.add(operation);
-		}
-		else {
-			entity.notifyComponentRemoved();
-		}
-	}
-	
-	public boolean hasOperationsToProcess() {
-		return operations.size > 0;
-	}
-	
-	public void processOperations() {
-		for (int i = 0; i < operations.size; ++i) {
-			ComponentOperation operation = operations.get(i);
+    public void add(Entity entity) {
+        if (delayed.value()) {
+            ComponentOperation operation = operationPool.obtain();
+            operation.makeAdd(entity);
+            operations.add(operation);
+        } else {
+            entity.notifyComponentAdded();
+        }
+    }
 
-			switch(operation.type) {
-				case Add:
-					operation.entity.notifyComponentAdded();
-					break;
-				case Remove:
-					operation.entity.notifyComponentRemoved();
-					break;
-				default: break;
-			}
+    public void remove(Entity entity) {
+        if (delayed.value()) {
+            ComponentOperation operation = operationPool.obtain();
+            operation.makeRemove(entity);
+            operations.add(operation);
+        } else {
+            entity.notifyComponentRemoved();
+        }
+    }
 
-			operationPool.free(operation);
-		}
+    public boolean hasOperationsToProcess() {
+        return operations.size > 0;
+    }
 
-		operations.clear();
-	}
-	
-	private static class ComponentOperation implements Pool.Poolable {
-		public enum Type {
-			Add,
-			Remove,
-		}
+    public void processOperations() {
+        for (int i = 0; i < operations.size; ++i) {
+            ComponentOperation operation = operations.get(i);
 
-		public Type type;
-		public Entity entity;
+            switch (operation.type) {
+                case Add:
+                    operation.entity.notifyComponentAdded();
+                    break;
+                case Remove:
+                    operation.entity.notifyComponentRemoved();
+                    break;
+                default:
+                    break;
+            }
 
-		public void makeAdd(Entity entity) {
-			this.type = Type.Add;
-			this.entity = entity;
-		}
+            operationPool.free(operation);
+        }
 
-		public void makeRemove(Entity entity) {
-			this.type = Type.Remove;
-			this.entity = entity;
-		}
+        operations.clear();
+    }
 
-		@Override
-		public void reset() {
-			entity = null;
-		}
-	}
-	
-	private static class ComponentOperationPool extends Pool<ComponentOperation> {
-		@Override
-		protected ComponentOperation newObject() {
-			return new ComponentOperation();
-		}
-	}
-	
-	interface BooleanInformer {
-		boolean value();
-	}
+    private static class ComponentOperation implements Pool.Poolable {
+        public enum Type {
+            Add,
+            Remove,
+        }
+
+        public Type type;
+        public Entity entity;
+
+        public void makeAdd(Entity entity) {
+            this.type = Type.Add;
+            this.entity = entity;
+        }
+
+        public void makeRemove(Entity entity) {
+            this.type = Type.Remove;
+            this.entity = entity;
+        }
+
+        @Override
+        public void reset() {
+            entity = null;
+        }
+    }
+
+    private static class ComponentOperationPool extends Pool<ComponentOperation> {
+        @Override
+        protected ComponentOperation newObject() {
+            return new ComponentOperation();
+        }
+    }
+
+    interface BooleanInformer {
+        boolean value();
+    }
 }
