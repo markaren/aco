@@ -1,0 +1,21 @@
+plugins {
+    id 'kotlin'
+}
+
+apply from: rootProject.file("gradle/mavenpublish.gradle")
+
+repositories {
+    maven {
+        url "https://dl.bintray.com/jmonkeyengine/org.jmonkeyengine"
+    }
+}
+
+dependencies {
+    api project(':core')
+
+    def jme3 = [v:'3.3.2-stable', g:'org.jmonkeyengine']
+    implementation "${jme3.g}:jme3-core:${jme3.v}"
+    runtime "${jme3.g}:jme3-desktop:${jme3.v}"
+    runtime "${jme3.g}:jme3-lwjgl:${jme3.v}"
+
+}

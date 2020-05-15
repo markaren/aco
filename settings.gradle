@@ -2,3 +2,4 @@ rootProject.name = 'aco'
 
 include 'core'
 include 'tests'
+include 'renderer-jme'

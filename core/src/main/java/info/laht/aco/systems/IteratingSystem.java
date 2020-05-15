@@ -21,6 +21,7 @@ import info.laht.aco.core.Entity;
 import info.laht.aco.core.EntitySystem;
 import info.laht.aco.core.Family;
 import info.laht.aco.utils.ImmutableArray;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple EntitySystem that iterates over each entity and calls processEntity() for each entity every time the EntitySystem is
@@ -28,6 +29,7 @@ import info.laht.aco.utils.ImmutableArray;
  * @author Stefan Bachmann
  */
 public abstract class IteratingSystem extends EntitySystem {
+
 	private Family family;
 	private ImmutableArray<Entity> entities;
 
@@ -51,12 +53,12 @@ public abstract class IteratingSystem extends EntitySystem {
 	}
 
 	@Override
-	public void addedToEngine (Engine engine) {
+	public void addedToEngine (@NotNull Engine engine) {
 		entities = engine.getEntitiesFor(family);
 	}
 
 	@Override
-	public void removedFromEngine (Engine engine) {
+	public void removedFromEngine (@NotNull Engine engine) {
 		entities = null;
 	}
 
@@ -87,5 +89,5 @@ public abstract class IteratingSystem extends EntitySystem {
 	 * @param entity The current Entity being processed
 	 * @param deltaTime The delta time between the last and current frame
 	 */
-	protected abstract void processEntity (Entity entity, double deltaTime);
+	protected abstract void processEntity (@NotNull Entity entity, double deltaTime);
 }

@@ -16,6 +16,8 @@
 
 package info.laht.aco.core;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Abstract class for processing sets of {@link Entity} objects.
  *
@@ -53,7 +55,7 @@ public abstract class EntitySystem {
      *
      * @param engine The {@link Engine} this system was added to.
      */
-    public void addedToEngine(Engine engine) {
+    public void addedToEngine(@NotNull Engine engine) {
     }
 
     /**
@@ -61,7 +63,7 @@ public abstract class EntitySystem {
      *
      * @param engine The {@link Engine} the system was removed from.
      */
-    public void removedFromEngine(Engine engine) {
+    public void removedFromEngine(@NotNull Engine engine) {
     }
 
     public void preInit() {
