@@ -27,7 +27,8 @@ import com.badlogic.gdx.utils.ObjectMap;
  * @author Stefan Bachmann
  */
 public class Family {
-	private static ObjectMap<String, Family> families = new ObjectMap<String, Family>();
+
+	private static final ObjectMap<String, Family> families = new ObjectMap<String, Family>();
 	private static int familyIndex = 0;
 	private static final Builder builder = new Builder();
 	private static final Bits zeroBits = new Bits();
@@ -62,11 +63,7 @@ public class Family {
 			return false;
 		}
 
-		if (!exclude.isEmpty() && exclude.intersects(entityComponentBits)) {
-			return false;
-		}
-
-		return true;
+		return exclude.isEmpty() || !exclude.intersects(entityComponentBits);
 	}
 
 	/**
@@ -74,7 +71,7 @@ public class Family {
 	 * @return A Builder singleton instance to get a family
 	 */
 	@SafeVarargs
-	public static final Builder all (Class<? extends Component>... componentTypes) {
+	public static Builder all (Class<? extends Component>... componentTypes) {
 		return builder.reset().all(componentTypes);
 	}
 
@@ -83,7 +80,7 @@ public class Family {
 	 * @return A Builder singleton instance to get a family
 	 */
 	@SafeVarargs
-	public static final Builder one (Class<? extends Component>... componentTypes) {
+	public static Builder one (Class<? extends Component>... componentTypes) {
 		return builder.reset().one(componentTypes);
 	}
 
@@ -92,7 +89,7 @@ public class Family {
 	 * @return A Builder singleton instance to get a family
 	 */
 	@SafeVarargs
-	public static final Builder exclude (Class<? extends Component>... componentTypes) {
+	public static Builder exclude (Class<? extends Component>... componentTypes) {
 		return builder.reset().exclude(componentTypes);
 	}
 

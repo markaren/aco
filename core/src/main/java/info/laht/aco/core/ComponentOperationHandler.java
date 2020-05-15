@@ -5,11 +5,12 @@ import com.badlogic.gdx.utils.Pool;
 
 
 class ComponentOperationHandler {
-	private BooleanInformer delayed;
-	private ComponentOperationPool operationPool = new ComponentOperationPool();;
- 	private Array<ComponentOperation> operations = new Array<ComponentOperation>();;
 
- 	public ComponentOperationHandler(BooleanInformer delayed) {
+	private final BooleanInformer delayed;
+	private final ComponentOperationPool operationPool = new ComponentOperationPool();
+	private final Array<ComponentOperation> operations = new Array<>();
+
+	public ComponentOperationHandler(BooleanInformer delayed) {
  		this.delayed = delayed;
  	}
  	
@@ -92,6 +93,6 @@ class ComponentOperationHandler {
 	}
 	
 	interface BooleanInformer {
-		public boolean value();
+		boolean value();
 	}
 }

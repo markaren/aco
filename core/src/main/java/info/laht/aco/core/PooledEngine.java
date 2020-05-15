@@ -35,8 +35,8 @@ import com.badlogic.gdx.utils.ReflectionPool;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PooledEngine extends Engine {
 
-	private EntityPool entityPool;
-	private ComponentPools componentPools;
+	private final EntityPool entityPool;
+	private final ComponentPools componentPools;
 
 	/**
 	 * Creates a new PooledEngine with a maximum of 100 entities and 100 components of each type. Use
@@ -128,13 +128,13 @@ public class PooledEngine extends Engine {
 		}
 	}
 
-	private class ComponentPools {
-		private ObjectMap<Class<?>, ReflectionPool> pools;
-		private int initialSize;
-		private int maxSize;
+	private static class ComponentPools {
+		private final ObjectMap<Class<?>, ReflectionPool> pools;
+		private final int initialSize;
+		private final int maxSize;
 
 		public ComponentPools (int initialSize, int maxSize) {
-			this.pools = new ObjectMap<Class<?>, ReflectionPool>();
+			this.pools = new ObjectMap<>();
 			this.initialSize = initialSize;
 			this.maxSize = maxSize;
 		}

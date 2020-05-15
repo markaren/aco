@@ -25,7 +25,7 @@ import info.laht.aco.core.EntitySystem;
  */
 public abstract class IntervalSystem extends EntitySystem {
 
-	private double interval;
+	private final double interval;
 	private double accumulator;
 
 	/**

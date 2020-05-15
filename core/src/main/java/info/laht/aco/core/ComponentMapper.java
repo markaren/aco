@@ -19,7 +19,7 @@ package info.laht.aco.core;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Provides super fast {@link Component} retrieval from {@Link Entity} objects.
+ * Provides super fast {@link Component} retrieval from {@link Entity} objects.
  * @param <T> the class type of the {@link Component}.
  * @author David Saltares
  */

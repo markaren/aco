@@ -7,12 +7,12 @@ import com.badlogic.gdx.utils.Pool;
 
 class EntityManager {
 
-	private EntityListener listener;
-	private Array<Entity> entities = new Array<Entity>(false, 16);
-	private ObjectSet<Entity> entitySet = new ObjectSet<Entity>();
-	private ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
-	private Array<EntityOperation> pendingOperations = new Array<EntityOperation>(false, 16);
-	private EntityOperationPool entityOperationPool = new EntityOperationPool();
+	private final EntityListener listener;
+	private final Array<Entity> entities = new Array<>(false, 16);
+	private final ObjectSet<Entity> entitySet = new ObjectSet<>();
+	private final ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
+	private final Array<EntityOperation> pendingOperations = new Array<>(false, 16);
+	private final EntityOperationPool entityOperationPool = new EntityOperationPool();
 	
 	public EntityManager(EntityListener listener) {
 		this.listener = listener;

@@ -24,10 +24,11 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * @author Stefan Bachmann
  */
 public class Signal<T> {
-	private SnapshotArray<Listener<T>> listeners;
+
+	private final SnapshotArray<Listener<T>> listeners;
 
 	public Signal () {
-		listeners = new SnapshotArray<Listener<T>>();
+		listeners = new SnapshotArray<>();
 	}
 
 	/**

@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public abstract class IteratingSystem extends EntitySystem {
 
-	private Family family;
+	private final Family family;
 	private ImmutableArray<Entity> entities;
 
 	/**

@@ -20,6 +20,7 @@ import info.laht.aco.systems.IteratingSystem;
 import info.laht.aco.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -569,7 +570,7 @@ public class EngineTests {
 		}
 
 		@Override
-		protected void processEntity (Entity entity, double deltaTime) {
+		protected void processEntity (@NotNull Entity entity, double deltaTime) {
 			Assert.assertNull(entity.getComponent(ComponentA.class));
 			entity.add(new ComponentA());
 			Assert.assertNotNull(entity.getComponent(ComponentA.class));
@@ -587,7 +588,7 @@ public class EngineTests {
 		}
 
 		@Override
-		protected void processEntity (Entity entity, double deltaTime) {
+		protected void processEntity (@NotNull Entity entity, double deltaTime) {
 			Assert.assertNotNull(entity.getComponent(ComponentA.class));
 			entity.remove(ComponentA.class);
 			Assert.assertNull(entity.getComponent(ComponentA.class));

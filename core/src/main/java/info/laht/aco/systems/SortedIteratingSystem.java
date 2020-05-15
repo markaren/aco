@@ -19,6 +19,7 @@ package info.laht.aco.systems;
 import info.laht.aco.core.*;
 import info.laht.aco.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Array;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 
@@ -31,11 +32,11 @@ import java.util.Comparator;
  */
 public abstract class SortedIteratingSystem extends EntitySystem implements EntityListener {
 
-	private Family family;
-	private Array<Entity> sortedEntities;
+	private final Family family;
+	private final Array<Entity> sortedEntities;
 	private final ImmutableArray<Entity> entities;
 	private boolean shouldSort;
-	private Comparator<Entity> comparator;
+	private final Comparator<Entity> comparator;
 
 	/**
 	 * Instantiates a system that will iterate over the entities described by the Family.
@@ -56,8 +57,8 @@ public abstract class SortedIteratingSystem extends EntitySystem implements Enti
 		super(priority);
 
 		this.family = family;
-		sortedEntities = new Array<Entity>(false, 16);
-		entities = new ImmutableArray<Entity>(sortedEntities);
+		sortedEntities = new Array<>(false, 16);
+		entities = new ImmutableArray<>(sortedEntities);
 		this.comparator = comparator;
 	}
 
@@ -97,13 +98,13 @@ public abstract class SortedIteratingSystem extends EntitySystem implements Enti
 	}
 
 	@Override
-	public void entityAdded (Entity entity) {
+	public void entityAdded (@NotNull Entity entity) {
 		sortedEntities.add(entity);
 		shouldSort = true;
 	}
 
 	@Override
-	public void entityRemoved (Entity entity) {
+	public void entityRemoved (@NotNull Entity entity) {
 		sortedEntities.removeValue(entity, true);
 		shouldSort = true;
 	}

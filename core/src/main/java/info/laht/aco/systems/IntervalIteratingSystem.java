@@ -21,6 +21,7 @@ import info.laht.aco.core.Entity;
 import info.laht.aco.core.EntitySystem;
 import info.laht.aco.core.Family;
 import info.laht.aco.utils.ImmutableArray;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link EntitySystem} that processes a {@link Family} of entities not once per frame, but after a given interval.
@@ -29,7 +30,7 @@ import info.laht.aco.utils.ImmutableArray;
  */
 public abstract class IntervalIteratingSystem extends IntervalSystem {
 
-	private Family family;
+	private final Family family;
 	private ImmutableArray<Entity> entities;
 
 	/**
@@ -80,6 +81,6 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 	 * The user should place the entity processing logic here.
 	 * @param entity
 	 */
-	protected abstract void processEntity (Entity entity);
+	protected abstract void processEntity (@NotNull Entity entity);
 
 }

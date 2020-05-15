@@ -18,6 +18,7 @@ package info.laht.aco.utils;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Array.ArrayIterable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
@@ -27,6 +28,7 @@ import java.util.Iterator;
  * @author David Saltares
  */
 public class ImmutableArray<T> implements Iterable<T> {
+
 	private final Array<T> array;
 	private ArrayIterable<T> iterable;
 
@@ -90,6 +92,7 @@ public class ImmutableArray<T> implements Iterable<T> {
 		return array.toString(separator);
 	}
 
+	@NotNull
 	@Override
 	public Iterator<T> iterator () {
 		if (iterable == null) {

@@ -21,6 +21,7 @@ package info.laht.aco.utils;
  * Inspired by Artemis Bag.
  */
 public class Bag<E> {
+
 	private E[] data;
 	private int size = 0;
 

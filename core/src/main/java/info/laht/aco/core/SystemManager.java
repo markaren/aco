@@ -9,9 +9,9 @@ import java.util.Comparator;
 class SystemManager {
 
 	private final SystemComparator systemComparator = new SystemComparator();
-	private final Array<EntitySystem> systems = new Array<EntitySystem>(true, 16);
-	private final ImmutableArray<EntitySystem> immutableSystems = new ImmutableArray<EntitySystem>(systems);
-	private final ObjectMap<Class<?>, EntitySystem> systemsByClass = new ObjectMap<Class<?>, EntitySystem>();
+	private final Array<EntitySystem> systems = new Array<>(true, 16);
+	private final ImmutableArray<EntitySystem> immutableSystems = new ImmutableArray<>(systems);
+	private final ObjectMap<Class<?>, EntitySystem> systemsByClass = new ObjectMap<>();
 	private final SystemListener listener;
 	
 	public SystemManager(SystemListener listener) {

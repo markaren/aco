@@ -4,12 +4,13 @@ import info.laht.aco.utils.ImmutableArray;
 import com.badlogic.gdx.utils.*;
 
 class FamilyManager {
+
 	ImmutableArray<Entity> entities;
-	private ObjectMap<Family, Array<Entity>> families = new ObjectMap<Family, Array<Entity>>();
-	private ObjectMap<Family, ImmutableArray<Entity>> immutableFamilies = new ObjectMap<Family, ImmutableArray<Entity>>();
-	private SnapshotArray<EntityListenerData> entityListeners = new SnapshotArray<EntityListenerData>(true, 16);
-	private ObjectMap<Family, Bits> entityListenerMasks = new ObjectMap<Family, Bits>();
-	private BitsPool bitsPool = new BitsPool();
+	private final ObjectMap<Family, Array<Entity>> families = new ObjectMap<Family, Array<Entity>>();
+	private final ObjectMap<Family, ImmutableArray<Entity>> immutableFamilies = new ObjectMap<Family, ImmutableArray<Entity>>();
+	private final SnapshotArray<EntityListenerData> entityListeners = new SnapshotArray<EntityListenerData>(true, 16);
+	private final ObjectMap<Family, Bits> entityListenerMasks = new ObjectMap<Family, Bits>();
+	private final BitsPool bitsPool = new BitsPool();
 	private boolean notifying = false;
 	
 	public FamilyManager(ImmutableArray<Entity> entities) {

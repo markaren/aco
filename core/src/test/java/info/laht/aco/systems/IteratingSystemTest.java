@@ -18,6 +18,7 @@ package info.laht.aco.systems;
 
 import info.laht.aco.core.*;
 import info.laht.aco.utils.ImmutableArray;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,7 +43,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double deltaTime) {
 			++numUpdates;
 		}
 	}
@@ -68,7 +69,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (Entity entity, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				entity.remove(SpyComponent.class);
@@ -92,12 +93,12 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void addedToEngine (Engine engine) {
+		public void addedToEngine (@NotNull Engine engine) {
 			super.addedToEngine(engine);
 		}
 
 		@Override
-		public void processEntity (Entity entity, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				getEngine().removeEntity(entity);

@@ -24,8 +24,8 @@ import info.laht.aco.components.PositionComponent;
 
 public class MovementSystem extends IteratingSystem {
 
-	private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
-	private ComponentMapper<MovementComponent> mm = ComponentMapper.getFor(MovementComponent.class);
+	private final ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+	private final ComponentMapper<MovementComponent> mm = ComponentMapper.getFor(MovementComponent.class);
 
 	public MovementSystem () {
 		super(Family.all(PositionComponent.class, MovementComponent.class).get());

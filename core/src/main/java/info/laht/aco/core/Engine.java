@@ -22,6 +22,7 @@ import info.laht.aco.signals.Signal;
 import info.laht.aco.utils.ImmutableArray;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -330,12 +331,12 @@ public class Engine implements Closeable {
 	
 	private class EngineEntityListener implements EntityListener {
 		@Override
-		public void entityAdded (Entity entity) {
+		public void entityAdded (@NotNull Entity entity) {
 			addEntityInternal(entity);
 		}
 
 		@Override
-		public void entityRemoved (Entity entity) {
+		public void entityRemoved (@NotNull Entity entity) {
 			removeEntityInternal(entity);
 		}
 	}

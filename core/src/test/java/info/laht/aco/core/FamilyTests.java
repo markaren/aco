@@ -17,6 +17,7 @@
 package info.laht.aco.core;
 
 import info.laht.aco.systems.IteratingSystem;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,7 +49,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (Entity e, double d) {
+		public void processEntity (@NotNull Entity e, double d) {
 		}
 	}
 
@@ -59,7 +60,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (Entity e, double d) {
+		public void processEntity (@NotNull Entity e, double d) {
 		}
 	}
 
