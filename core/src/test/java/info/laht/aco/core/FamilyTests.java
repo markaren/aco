@@ -49,7 +49,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity e, double t, double d) {
+		public void processEntity (@NotNull Entity e, double d) {
 		}
 	}
 
@@ -60,7 +60,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity e, double t, double d) {
+		public void processEntity (@NotNull Entity e, double d) {
 		}
 	}
 

@@ -80,7 +80,7 @@ class JmeRenderSystem : IteratingSystem(
         }
     }
 
-    override fun processEntity(entity: Entity, currentTime: Double, deltaTime: Double) {
+    override fun processEntity(entity: Entity, deltaTime: Double) {
 
         val node = map.computeIfAbsent(entity) {
             createNode(entity)

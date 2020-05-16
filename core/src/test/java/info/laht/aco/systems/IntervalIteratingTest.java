@@ -30,7 +30,7 @@ public class IntervalIteratingTest {
 	}
 
 	private static class IntervalIteratingSystemSpy extends IntervalIteratingSystem {
-		private ComponentMapper<IntervalComponentSpy> im;
+		private final ComponentMapper<IntervalComponentSpy> im;
 
 		public IntervalIteratingSystemSpy () {
 			super(Family.all(IntervalComponentSpy.class).get(), deltaTime * 2);

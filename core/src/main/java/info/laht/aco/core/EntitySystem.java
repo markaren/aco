@@ -77,7 +77,7 @@ public abstract class EntitySystem {
      *
      * @param deltaTime The time passed since last frame in seconds.
      */
-    public void update(double currentTime, double deltaTime) {
+    public void update(double deltaTime) {
     }
 
     public void terminate() {

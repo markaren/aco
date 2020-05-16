@@ -28,12 +28,12 @@ abstract class CoroutineSystem @JvmOverloads constructor(
         entities = null
     }
 
-    override fun update(currentTime: Double, deltaTime: Double) {
+    override fun update(deltaTime: Double) {
 
         runBlocking(Dispatchers.Default) {
             entities!!.forEach { entity ->
                 launch {
-                    processEntity(entity, currentTime, deltaTime)
+                    processEntity(entity, deltaTime)
                 }
             }
         }
@@ -45,6 +45,6 @@ abstract class CoroutineSystem @JvmOverloads constructor(
      * @param entity The current Entity being processed
      * @param deltaTime The delta time between the last and current frame
      */
-    protected abstract suspend fun processEntity(entity: Entity, currentTime: Double, deltaTime: Double)
+    protected abstract suspend fun processEntity(entity: Entity, deltaTime: Double)
 
 }

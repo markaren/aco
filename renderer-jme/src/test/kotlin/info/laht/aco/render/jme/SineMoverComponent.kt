@@ -1,6 +1,5 @@
 package info.laht.aco.render.jme
 
-import com.badlogic.gdx.math.Vector3
 import info.laht.aco.core.Component
 import info.laht.aco.core.ComponentMapper
 import info.laht.aco.core.Entity
@@ -26,13 +25,13 @@ class SineMoverSystem : IteratingSystem(
 
     private val tmp = Vector3d()
 
-    override fun processEntity(entity: Entity, currentTime: Double, deltaTime: Double) {
+    override fun processEntity(entity: Entity, deltaTime: Double) {
 
         val s = sm.get(entity)
         val t = tm.get(entity)
 
         val pos = t.getLocalTranslation(tmp)
-        t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * currentTime + s.phi), pos.z)
+        t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * engine.currentTime + s.phi), pos.z)
 
     }
 }

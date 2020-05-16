@@ -28,7 +28,7 @@ public class SortedIteratingSystemTest {
 
 	private static final ComponentMapper<OrderComponent> orderMapper = ComponentMapper.getFor(OrderComponent.class);
 	private static final OrderComparator comparator = new OrderComparator();
-	private static final float deltaTime = 0.16f;
+	private static final double deltaTime = 0.16;
 
 	private static class ComponentB implements Component {
 	}
@@ -44,8 +44,8 @@ public class SortedIteratingSystemTest {
 		}
 
 		@Override
-		public void update (double currentTime, double deltaTime) {
-			super.update(currentTime, deltaTime);
+		public void update (double deltaTime) {
+			super.update(deltaTime);
 			Assert.assertTrue(expectedNames.isEmpty());
 		}
 

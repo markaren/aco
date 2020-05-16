@@ -68,6 +68,10 @@ public class Engine implements Closeable {
         this.currentTime = currentTime;
     }
 
+    public double getCurrentTime() {
+        return currentTime;
+    }
+
     /**
      * Creates a new Entity object.
      *
@@ -274,7 +278,7 @@ public class Engine implements Closeable {
             for (EntitySystem system : systems) {
 
                 if (system.checkProcessing()) {
-                    system.update(currentTime, deltaTime);
+                    system.update(deltaTime);
                 }
 
                 while (componentOperationHandler.hasOperationsToProcess() || entityManager.hasPendingOperations()) {

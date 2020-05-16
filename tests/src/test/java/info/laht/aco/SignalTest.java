@@ -21,7 +21,7 @@ import info.laht.aco.signals.Signal;
 
 public class SignalTest {
     public static void main(String[] args) {
-        Signal<String> signal = new Signal<String>();
+        Signal<String> signal = new Signal<>();
 
         Listener<String> listener = new Listener<String>() {
             @Override

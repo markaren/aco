@@ -90,11 +90,9 @@ public class BasicTest {
         }
 
         @Override
-        public void update(double currentTime, double deltaTime) {
+        public void update(double deltaTime) {
 
-            for (int i = 0; i < entities.size(); ++i) {
-                Entity e = entities.get(i);
-
+            for (Entity e : entities) {
                 PositionComponent p = pm.get(e);
                 MovementComponent m = mm.get(e);
 

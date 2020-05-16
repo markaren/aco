@@ -54,7 +54,7 @@ public class RenderSystem extends EntitySystem {
 	}
 
 	@Override
-	public void update (double currentTime, double deltaTime) {
+	public void update (double deltaTime) {
 		PositionComponent position;
 		VisualComponent visual;
 

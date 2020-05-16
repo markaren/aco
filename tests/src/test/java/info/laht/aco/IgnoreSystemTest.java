@@ -37,7 +37,7 @@ public class IgnoreSystemTest {
 
     private static class CounterSystem extends EntitySystem {
         @Override
-        public void update(double currentTime, double deltaTime) {
+        public void update(double deltaTime) {
             log("Running " + getClass().getSimpleName());
         }
     }
@@ -53,7 +53,7 @@ public class IgnoreSystemTest {
         }
 
         @Override
-        public void update(double currentTime, double deltaTime) {
+        public void update(double deltaTime) {
             log("Running " + getClass().getSimpleName());
         }
     }

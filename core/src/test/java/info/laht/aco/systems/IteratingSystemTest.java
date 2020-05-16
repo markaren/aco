@@ -43,7 +43,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double deltaTime) {
 			++numUpdates;
 		}
 	}
@@ -69,7 +69,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				entity.remove(SpyComponent.class);
@@ -98,7 +98,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				getEngine().removeEntity(entity);
