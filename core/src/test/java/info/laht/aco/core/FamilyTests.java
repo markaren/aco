@@ -49,7 +49,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity e, double d) {
+		public void processEntity (@NotNull Entity e, double t, double d) {
 		}
 	}
 
@@ -60,7 +60,7 @@ public class FamilyTests {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity e, double d) {
+		public void processEntity (@NotNull Entity e, double t, double d) {
 		}
 	}
 
@@ -96,15 +96,15 @@ public class FamilyTests {
 		Family family9 = Family.all().get();
 		Family family10 = Family.all().get();
 
-		Assert.assertTrue(family1.equals(family2));
-		Assert.assertTrue(family2.equals(family1));
-		Assert.assertTrue(family3.equals(family4));
-		Assert.assertTrue(family4.equals(family3));
-		Assert.assertTrue(family5.equals(family6));
-		Assert.assertTrue(family6.equals(family5));
-		Assert.assertTrue(family7.equals(family8));
-		Assert.assertTrue(family8.equals(family7));
-		Assert.assertTrue(family9.equals(family10));
+		Assert.assertEquals(family1, family2);
+		Assert.assertEquals(family2, family1);
+		Assert.assertEquals(family3, family4);
+		Assert.assertEquals(family4, family3);
+		Assert.assertEquals(family5, family6);
+		Assert.assertEquals(family6, family5);
+		Assert.assertEquals(family7, family8);
+		Assert.assertEquals(family8, family7);
+		Assert.assertEquals(family9, family10);
 
 		Assert.assertEquals(family1.getIndex(), family2.getIndex());
 		Assert.assertEquals(family3.getIndex(), family4.getIndex());

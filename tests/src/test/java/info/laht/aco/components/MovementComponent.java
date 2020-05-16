@@ -19,6 +19,7 @@ package info.laht.aco.components;
 import info.laht.aco.core.Component;
 
 public class MovementComponent implements Component {
+
 	public float velocityX;
 	public float velocityY;
 

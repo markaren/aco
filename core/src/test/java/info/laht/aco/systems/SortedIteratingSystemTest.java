@@ -44,8 +44,8 @@ public class SortedIteratingSystemTest {
 		}
 
 		@Override
-		public void update (double deltaTime) {
-			super.update(deltaTime);
+		public void update (double currentTime, double deltaTime) {
+			super.update(currentTime, deltaTime);
 			Assert.assertTrue(expectedNames.isEmpty());
 		}
 

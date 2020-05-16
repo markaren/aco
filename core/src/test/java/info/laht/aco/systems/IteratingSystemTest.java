@@ -43,7 +43,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity entity, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
 			++numUpdates;
 		}
 	}
@@ -58,8 +58,8 @@ public class IteratingSystemTest {
 
 	private static class IteratingComponentRemovalSystem extends IteratingSystem {
 
-		private ComponentMapper<SpyComponent> sm;
-		private ComponentMapper<IndexComponent> im;
+		private final ComponentMapper<SpyComponent> sm;
+		private final ComponentMapper<IndexComponent> im;
 
 		public IteratingComponentRemovalSystem () {
 			super(Family.all(SpyComponent.class, IndexComponent.class).get());
@@ -69,7 +69,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity entity, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				entity.remove(SpyComponent.class);
@@ -82,8 +82,8 @@ public class IteratingSystemTest {
 	}
 
 	private static class IteratingRemovalSystem extends IteratingSystem {
-		private ComponentMapper<SpyComponent> sm;
-		private ComponentMapper<IndexComponent> im;
+		private final ComponentMapper<SpyComponent> sm;
+		private final ComponentMapper<IndexComponent> im;
 
 		public IteratingRemovalSystem () {
 			super(Family.all(SpyComponent.class, IndexComponent.class).get());
@@ -98,7 +98,7 @@ public class IteratingSystemTest {
 		}
 
 		@Override
-		public void processEntity (@NotNull Entity entity, double deltaTime) {
+		public void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
 			int index = im.get(entity).index;
 			if (index % 2 == 0) {
 				getEngine().removeEntity(entity);

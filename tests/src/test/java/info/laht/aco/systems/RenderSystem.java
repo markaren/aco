@@ -31,11 +31,11 @@ public class RenderSystem extends EntitySystem {
 
 	private ImmutableArray<Entity> entities;
 
-	private SpriteBatch batch;
-	private OrthographicCamera camera;
+	private final SpriteBatch batch;
+	private final OrthographicCamera camera;
 
-	private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
-	private ComponentMapper<VisualComponent> vm = ComponentMapper.getFor(VisualComponent.class);
+	private final ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+	private final ComponentMapper<VisualComponent> vm = ComponentMapper.getFor(VisualComponent.class);
 
 	public RenderSystem (OrthographicCamera camera) {
 		batch = new SpriteBatch();
@@ -54,7 +54,7 @@ public class RenderSystem extends EntitySystem {
 	}
 
 	@Override
-	public void update (double deltaTime) {
+	public void update (double currentTime, double deltaTime) {
 		PositionComponent position;
 		VisualComponent visual;
 

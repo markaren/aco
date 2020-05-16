@@ -59,7 +59,7 @@ public class PooledEngineTests {
 		}
 
 		@Override
-		public void update (double deltaTime) {
+		public void update (double currentTime, double deltaTime) {
 			if (counter >= 6 && counter <= 8) {
 				getEngine().removeEntity(allEntities.get(2));
 			}

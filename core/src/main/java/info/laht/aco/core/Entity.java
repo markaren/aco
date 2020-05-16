@@ -56,9 +56,9 @@ public class Entity {
      * Creates an empty Entity.
      */
     public Entity() {
-        components = new Bag<Component>();
-        componentsArray = new Array<Component>(false, 16);
-        immutableComponentsArray = new ImmutableArray<Component>(componentsArray);
+        components = new Bag<>();
+        componentsArray = new Array<>(false, 16);
+        immutableComponentsArray = new ImmutableArray<>(componentsArray);
         componentBits = new Bits();
         familyBits = new Bits();
         flags = 0;
@@ -245,4 +245,5 @@ public class Entity {
     public boolean isScheduledForRemoval() {
         return scheduledForRemoval;
     }
+
 }

@@ -13,7 +13,7 @@ subprojects {
     apply plugin: "java-library"
 
     group = 'info.laht.aco'
-    version = '0.2.1'
+    version = '0.2.2'
 
     repositories {
         mavenCentral()

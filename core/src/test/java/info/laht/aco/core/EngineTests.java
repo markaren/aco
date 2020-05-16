@@ -27,7 +27,7 @@ import org.junit.Test;
 @SuppressWarnings("unchecked")
 public class EngineTests {
 
-	private double deltaTime = 0.16;
+	private final double deltaTime = 0.16;
 
 	private static class ComponentA implements Component {
 	}
@@ -86,7 +86,7 @@ public class EngineTests {
 		}
 
 		@Override
-		public void update (double deltaTime) {
+		public void update (double currentTime, double deltaTime) {
 			++updateCalls;
 
 			if (updates != null) {
@@ -142,7 +142,7 @@ public class EngineTests {
 		}
 
 		@Override
-		public void update (double deltaTime) {
+		public void update (double currentTime, double deltaTime) {
 			for (int i = 0; i < entities.size(); ++i) {
 				if (i % 2 == 0) {
 					entities.get(i).getComponent(CounterComponent.class).counter++;
@@ -562,7 +562,7 @@ public class EngineTests {
 	
 	public class ComponentAddSystem extends IteratingSystem {
 
-		private ComponentAddedListener listener; 
+		private final ComponentAddedListener listener;
 		
 		public ComponentAddSystem (ComponentAddedListener listener) {
 			super(Family.all().get());
@@ -570,7 +570,7 @@ public class EngineTests {
 		}
 
 		@Override
-		protected void processEntity (@NotNull Entity entity, double deltaTime) {
+		protected void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
 			Assert.assertNull(entity.getComponent(ComponentA.class));
 			entity.add(new ComponentA());
 			Assert.assertNotNull(entity.getComponent(ComponentA.class));
@@ -580,7 +580,7 @@ public class EngineTests {
 	
 	public class ComponentRemoveSystem extends IteratingSystem {
 
-		private ComponentRemovedListener listener; 
+		private final ComponentRemovedListener listener;
 		
 		public ComponentRemoveSystem (ComponentRemovedListener listener) {
 			super(Family.all().get());
@@ -588,7 +588,7 @@ public class EngineTests {
 		}
 
 		@Override
-		protected void processEntity (@NotNull Entity entity, double deltaTime) {
+		protected void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
 			Assert.assertNotNull(entity.getComponent(ComponentA.class));
 			entity.remove(ComponentA.class);
 			Assert.assertNull(entity.getComponent(ComponentA.class));
@@ -740,7 +740,7 @@ public class EngineTests {
 		// listeners cascade creations (up to 20)
 		EntitySystem addSystem = new EntitySystem() {
 			@Override
-			public void update(double deltaTime) {
+			public void update(double currentTime, double deltaTime) {
 				getEngine().addEntity(new Entity());
 			}
 		};
@@ -755,7 +755,7 @@ public class EngineTests {
 		// listeners cascade deletion (up to 0)
 		EntitySystem removeSystem = new EntitySystem() {
 			@Override
-			public void update(double deltaTime) {
+			public void update(double currentTime, double deltaTime) {
 				getEngine().removeEntity(entities.peek());
 			}
 		};
@@ -906,7 +906,7 @@ public class EngineTests {
 			boolean duringCallback;
 			
 			@Override
-			public void update(double deltaTime) {
+			public void update(double currentTime, double deltaTime) {
 				if (!duringCallback) {
 					duringCallback = true;
 					getEngine().update(deltaTime);
@@ -924,7 +924,7 @@ public class EngineTests {
 		
 		EntitySystem system = new EntitySystem() {
 			@Override
-			public void update(double deltaTime) {
+			public void update(double currentTime, double deltaTime) {
 				throw new GdxRuntimeException("throwing");
 			}
 		};

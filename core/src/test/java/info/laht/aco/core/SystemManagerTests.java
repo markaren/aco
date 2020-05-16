@@ -42,7 +42,7 @@ public class SystemManagerTests {
 		}
 
 		@Override
-		public void update (double deltaTime) {
+		public void update (double currentTime, double deltaTime) {
 			if (updates != null) {
 				updates.add(priority);
 			}

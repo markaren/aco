@@ -21,20 +21,18 @@ class SineMoverSystem : IteratingSystem(
     Family.all(SineMoverComponent::class.java, TransformComponent::class.java).get()
 ) {
 
-    private var time = 0.0
     private val sm = ComponentMapper.getFor(SineMoverComponent::class.java)
     private val tm = ComponentMapper.getFor(TransformComponent::class.java)
 
     private val tmp = Vector3d()
 
-    override fun processEntity(entity: Entity, deltaTime: Double) {
+    override fun processEntity(entity: Entity, currentTime: Double, deltaTime: Double) {
 
         val s = sm.get(entity)
         val t = tm.get(entity)
 
         val pos = t.getLocalTranslation(tmp)
-        t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * time + s.phi), pos.z)
-        time += deltaTime
+        t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * currentTime + s.phi), pos.z)
 
     }
 }

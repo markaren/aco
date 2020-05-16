@@ -58,6 +58,16 @@ public class Engine implements Closeable {
     private boolean initialized;
     private boolean updating;
 
+    private double currentTime;
+
+    public Engine() {
+        this(0);
+    }
+
+    public Engine(double currentTime) {
+        this.currentTime = currentTime;
+    }
+
     /**
      * Creates a new Entity object.
      *
@@ -264,7 +274,7 @@ public class Engine implements Closeable {
             for (EntitySystem system : systems) {
 
                 if (system.checkProcessing()) {
-                    system.update(deltaTime);
+                    system.update(currentTime, deltaTime);
                 }
 
                 while (componentOperationHandler.hasOperationsToProcess() || entityManager.hasPendingOperations()) {
@@ -272,6 +282,7 @@ public class Engine implements Closeable {
                     entityManager.processPendingOperations();
                 }
             }
+            currentTime += deltaTime;
         } finally {
             updating = false;
         }
