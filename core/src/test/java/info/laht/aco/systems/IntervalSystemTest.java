@@ -46,7 +46,7 @@ public class IntervalSystemTest {
 		engine.addSystem(intervalSystemSpy);
 
 		for (int i = 1; i <= 10; ++i) {
-			engine.update(deltaTime);
+			engine.step(deltaTime);
 			Assert.assertEquals(i / 2, intervalSystemSpy.numUpdates);
 		}
 	}

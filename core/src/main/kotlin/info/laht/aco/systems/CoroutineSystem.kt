@@ -28,7 +28,7 @@ abstract class CoroutineSystem @JvmOverloads constructor(
         entities = null
     }
 
-    override fun update(deltaTime: Double) {
+    override fun step(deltaTime: Double) {
 
         runBlocking(Dispatchers.Default) {
             entities!!.forEach { entity ->

@@ -29,7 +29,7 @@ import java.io.IOException;
 
 /**
  * The heart of the Entity framework. It is responsible for keeping track of {@link Entity} and
- * managing {@link EntitySystem} objects. The Engine should be updated every tick via the {@link #update(double)} method.
+ * managing {@link EntitySystem} objects. The Engine should be updated every tick via the {@link #step(double)} method.
  * <p>
  * With the Engine you can:
  *
@@ -58,18 +58,29 @@ public class Engine implements Closeable {
     private boolean initialized;
     private boolean updating;
 
+    private long stepNumber;
+    private final double startTime;
     private double currentTime;
 
     public Engine() {
         this(0);
     }
 
-    public Engine(double currentTime) {
-        this.currentTime = currentTime;
+    public Engine(double startTime) {
+        this.startTime = startTime;
+        this.currentTime = startTime;
     }
 
     public double getCurrentTime() {
         return currentTime;
+    }
+
+    public double getStartTime() {
+        return startTime;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
     }
 
     /**
@@ -247,12 +258,12 @@ public class Engine implements Closeable {
             initialized = true;
             ImmutableArray<EntitySystem> systems = systemManager.getSystems();
             for (EntitySystem system : systems) {
-                if (system.checkProcessing()) {
+                if (system.isEnabled()) {
                     system.preInit();
                 }
             }
             for (EntitySystem system : systems) {
-                if (system.checkProcessing()) {
+                if (system.isEnabled()) {
                     system.postInit();
                 }
             }
@@ -260,13 +271,13 @@ public class Engine implements Closeable {
     }
 
     /**
-     * Updates all the systems in this Engine.
+     * Steps all the systems in this Engine.
      *
      * @param deltaTime The time passed since the last frame.
      */
-    public void update(double deltaTime) {
+    public void step(double deltaTime) {
         if (updating) {
-            throw new IllegalStateException("Cannot call update() on an Engine that is already updating.");
+            throw new IllegalStateException("Cannot call step() on an Engine that is already stepping.");
         }
         if (!initialized) {
             init();
@@ -277,8 +288,8 @@ public class Engine implements Closeable {
         try {
             for (EntitySystem system : systems) {
 
-                if (system.checkProcessing()) {
-                    system.update(deltaTime);
+                if (system.isEnabled()) {
+                    system.step(deltaTime);
                 }
 
                 while (componentOperationHandler.hasOperationsToProcess() || entityManager.hasPendingOperations()) {
@@ -286,7 +297,15 @@ public class Engine implements Closeable {
                     entityManager.processPendingOperations();
                 }
             }
+
             currentTime += deltaTime;
+            stepNumber += 1;
+
+            for (EntitySystem system : systems) {
+                if (system.isEnabled()) {
+                    system.postStep();
+                }
+            }
         } finally {
             updating = false;
         }
@@ -299,7 +318,7 @@ public class Engine implements Closeable {
 
         ImmutableArray<EntitySystem> systems = systemManager.getSystems();
         for (EntitySystem system : systems) {
-            if (system.checkProcessing()) {
+            if (system.isEnabled()) {
                 system.terminate();
             }
         }
@@ -363,4 +382,5 @@ public class Engine implements Closeable {
             return updating;
         }
     }
+
 }

@@ -76,7 +76,7 @@ public class SpeedTest {
         /** System processing */
         timer.start("systemProcessing");
 
-        engine.update(0);
+        engine.step(0);
 
         System.out.println("System processing times " + timer.stop("systemProcessing") + "ms");
 

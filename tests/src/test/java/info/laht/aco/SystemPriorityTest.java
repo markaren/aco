@@ -27,7 +27,7 @@ public class SystemPriorityTest {
         engine.addSystem(new SystemB(5));
         engine.addSystem(new SystemA(2));
 
-        engine.update(0);
+        engine.step(0);
     }
 
     public static class SystemA extends EntitySystem {
@@ -36,7 +36,7 @@ public class SystemPriorityTest {
         }
 
         @Override
-        public void update(double deltaTime) {
+        public void step(double deltaTime) {
             System.out.println("SystemA");
         }
 
@@ -48,7 +48,7 @@ public class SystemPriorityTest {
         }
 
         @Override
-        public void update(double deltaTime) {
+        public void step(double deltaTime) {
             System.out.println("SystemB");
         }
     }

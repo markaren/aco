@@ -59,7 +59,7 @@ public class PooledEngineTests {
 		}
 
 		@Override
-		public void update (double deltaTime) {
+		public void step(double deltaTime) {
 			if (counter >= 6 && counter <= 8) {
 				getEngine().removeEntity(allEntities.get(2));
 			}
@@ -104,7 +104,7 @@ public class PooledEngineTests {
 		Assert.assertEquals(10, combinedSystem.allEntities.size());
 
 		for (int i = 0; i < 10; i++) {
-			engine.update(deltaTime);
+			engine.step(deltaTime);
 		}
 
 		engine.removeAllEntities();

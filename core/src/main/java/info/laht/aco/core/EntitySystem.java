@@ -30,7 +30,7 @@ public abstract class EntitySystem {
      */
     public int priority;
 
-    private boolean processing;
+    private boolean enabled;
     private Engine engine;
 
     /**
@@ -47,7 +47,7 @@ public abstract class EntitySystem {
      */
     public EntitySystem(int priority) {
         this.priority = priority;
-        this.processing = true;
+        this.enabled = true;
     }
 
     /**
@@ -55,7 +55,7 @@ public abstract class EntitySystem {
      *
      * @param engine The {@link Engine} this system was added to.
      */
-    public void addedToEngine(@NotNull Engine engine) {
+    protected void addedToEngine(@NotNull Engine engine) {
     }
 
     /**
@@ -63,13 +63,13 @@ public abstract class EntitySystem {
      *
      * @param engine The {@link Engine} the system was removed from.
      */
-    public void removedFromEngine(@NotNull Engine engine) {
+    protected void removedFromEngine(@NotNull Engine engine) {
     }
 
-    public void preInit() {
+    protected void preInit() {
     }
 
-    public void postInit() {
+    protected void postInit() {
     }
 
     /**
@@ -77,7 +77,10 @@ public abstract class EntitySystem {
      *
      * @param deltaTime The time passed since last frame in seconds.
      */
-    public void update(double deltaTime) {
+    protected void step(double deltaTime) {
+    }
+
+    protected void postStep() {
     }
 
     public void terminate() {
@@ -86,15 +89,15 @@ public abstract class EntitySystem {
     /**
      * @return Whether or not the system should be processed.
      */
-    public boolean checkProcessing() {
-        return processing;
+    public boolean isEnabled() {
+        return enabled;
     }
 
     /**
      * Sets whether or not the system should be processed by the {@link Engine}.
      */
-    public void setProcessing(boolean processing) {
-        this.processing = processing;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     /**

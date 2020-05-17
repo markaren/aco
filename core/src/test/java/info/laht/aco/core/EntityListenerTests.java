@@ -235,12 +235,12 @@ public class EntityListenerTests {
             }
         });
 
-        engine.update(0);
+        engine.step(0);
         Entity e = new Entity();
         engine.addEntity(e);
-        engine.update(0);
+        engine.step(0);
         engine.removeEntity(e);
-        engine.update(0);
+        engine.step(0);
 
         Mockito.verify(recorder).addingComponentA();
         Mockito.verify(recorder).removingComponentA();

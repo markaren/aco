@@ -51,7 +51,7 @@ public abstract class IntervalSystem extends EntitySystem {
     }
 
     @Override
-    public final void update(double deltaTime) {
+    public final void step(double deltaTime) {
         accumulator += deltaTime;
 
         while (accumulator >= interval) {

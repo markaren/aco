@@ -123,21 +123,21 @@ public class IteratingSystemTest {
 
 		// When entity has ComponentA
 		e.add(new ComponentA());
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(0, system.numUpdates);
 
 		// When entity has ComponentA and ComponentB
 		system.numUpdates = 0;
 		e.add(new ComponentB());
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(1, system.numUpdates);
 
 		// When entity has ComponentA, ComponentB and ComponentC
 		system.numUpdates = 0;
 		e.add(new ComponentC());
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(1, system.numUpdates);
 
@@ -145,7 +145,7 @@ public class IteratingSystemTest {
 		system.numUpdates = 0;
 		e.remove(ComponentA.class);
 		e.add(new ComponentC());
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(0, system.numUpdates);
 	}
@@ -172,7 +172,7 @@ public class IteratingSystemTest {
 			engine.addEntity(e);
 		}
 
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(numEntities / 2, entities.size());
 
@@ -205,7 +205,7 @@ public class IteratingSystemTest {
 			engine.addEntity(e);
 		}
 
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(numEntities / 2, entities.size());
 

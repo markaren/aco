@@ -2,42 +2,35 @@ package info.laht.aco.render.jme
 
 import info.laht.aco.core.Engine
 import info.laht.aco.core.Entity
-import info.laht.aco.math.Color
 import info.laht.aco.render.TransformComponent
 import info.laht.aco.render.geometry.BoxShape
 import info.laht.aco.render.geometry.GeometryComponent
-import info.laht.aco.utils.Clock
-import java.util.concurrent.atomic.AtomicBoolean
-
+import info.laht.aco.render.geometry.SphereShape
 
 fun main() {
 
     val engine = Engine()
-
-    Entity().apply {
+    val box = Entity() .apply {
+        add(GeometryComponent(BoxShape()))
         add(TransformComponent().apply {
             setLocalTranslation(0.0, 0.0, 0.0)
         })
-        add(GeometryComponent(BoxShape()).apply {
-            color.set(Color.blue)
-        })
-        add(SineMoverComponent(A=4.0))
-        engine.addEntity(this)
+        add(SineMoverComponent())
     }
-    Entity().apply {
+    engine.addEntity(box)
+    val sphere = Entity() .apply {
+        add(GeometryComponent(SphereShape()))
         add(TransformComponent().apply {
-            setLocalTranslation(5.0, 0.0, 0.0)
+            setLocalTranslation(2.0, 0.0, 0.0)
         })
-        add(GeometryComponent(BoxShape()).apply {
-            color.set(Color.yellow)
-        })
-        add(SineMoverComponent(A=3.0))
-        engine.addEntity(this)
+        add(SineMoverComponent())
     }
+    engine.addEntity(sphere)
+
+
     engine.addSystem(SineMoverSystem())
 
     val runner = JmeEngineRunner(engine)
     runner.start()
 
 }
-

@@ -113,7 +113,7 @@ public abstract class SortedIteratingSystem extends EntitySystem implements Enti
     }
 
     @Override
-    public void update(double deltaTime) {
+    public void step(double deltaTime) {
         sort();
         for (int i = 0; i < sortedEntities.size; ++i) {
             processEntity(sortedEntities.get(i), deltaTime);

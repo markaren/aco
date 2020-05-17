@@ -60,7 +60,7 @@ public class IntervalIteratingTest {
 		}
 
 		for (int i = 1; i <= 10; ++i) {
-			engine.update(deltaTime);
+			engine.step(deltaTime);
 
 			for (int j = 0; j < entities.size(); ++j) {
 				Assert.assertEquals(i / 2, im.get(entities.get(j)).numUpdates);

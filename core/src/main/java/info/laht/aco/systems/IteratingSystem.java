@@ -66,7 +66,7 @@ public abstract class IteratingSystem extends EntitySystem {
     }
 
     @Override
-    public void update(double deltaTime) {
+    public void step(double deltaTime) {
         for (int i = 0; i < entities.size(); ++i) {
             processEntity(entities.get(i), deltaTime);
         }

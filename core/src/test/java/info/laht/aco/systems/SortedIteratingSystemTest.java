@@ -44,8 +44,8 @@ public class SortedIteratingSystemTest {
 		}
 
 		@Override
-		public void update (double deltaTime) {
-			super.update(deltaTime);
+		public void step(double deltaTime) {
+			super.step(deltaTime);
 			Assert.assertTrue(expectedNames.isEmpty());
 		}
 
@@ -146,22 +146,22 @@ public class SortedIteratingSystemTest {
 
 		// When entity has OrderComponent
 		e.add(new OrderComponent("A", 0));
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		// When entity has OrderComponent and ComponentB
 		e.add(new ComponentB());
 		system.expectedNames.addLast("A");
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		// When entity has OrderComponent, ComponentB and ComponentC
 		e.add(new ComponentC());
 		system.expectedNames.addLast("A");
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		// When entity has ComponentB and ComponentC
 		e.remove(OrderComponent.class);
 		e.add(new ComponentC());
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 	}
 
 	@Test
@@ -187,7 +187,7 @@ public class SortedIteratingSystemTest {
 			engine.addEntity(e);
 		}
 
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(numEntities / 2, entities.size());
 
@@ -221,7 +221,7 @@ public class SortedIteratingSystemTest {
 			engine.addEntity(e);
 		}
 
-		engine.update(deltaTime);
+		engine.step(deltaTime);
 
 		Assert.assertEquals(numEntities / 2, entities.size());
 
@@ -257,14 +257,14 @@ public class SortedIteratingSystemTest {
 		system.expectedNames.addLast("A");
 		system.expectedNames.addLast("B");
 		system.expectedNames.addLast("C");
-		engine.update(0);
+		engine.step(0);
 
 		engine.addEntity(d);
 		system.expectedNames.addLast("A");
 		system.expectedNames.addLast("B");
 		system.expectedNames.addLast("D");
 		system.expectedNames.addLast("C");
-		engine.update(0);
+		engine.step(0);
 
 		orderMapper.get(a).zLayer = 3;
 		orderMapper.get(b).zLayer = 2;
@@ -275,7 +275,7 @@ public class SortedIteratingSystemTest {
 		system.expectedNames.addLast("C");
 		system.expectedNames.addLast("B");
 		system.expectedNames.addLast("A");
-		engine.update(0);
+		engine.step(0);
 	}
 
 	private static class OrderComparator implements Comparator<Entity> {

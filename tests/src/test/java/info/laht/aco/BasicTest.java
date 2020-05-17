@@ -47,7 +47,7 @@ public class BasicTest {
         log("PositionSystem has: " + positionSystem.entities.size() + " entities.");
 
         for (int i = 0; i < 10; i++) {
-            engine.update(0.25f);
+            engine.step(0.25f);
 
             if (i > 5) engine.removeSystem(movementSystem);
         }
@@ -90,7 +90,7 @@ public class BasicTest {
         }
 
         @Override
-        public void update(double deltaTime) {
+        public void step(double deltaTime) {
 
             for (Entity e : entities) {
                 PositionComponent p = pm.get(e);

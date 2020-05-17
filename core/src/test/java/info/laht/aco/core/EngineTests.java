@@ -87,7 +87,7 @@ public class EngineTests {
         }
 
         @Override
-        public void update(double deltaTime) {
+        public void step(double deltaTime) {
             ++updateCalls;
 
             if (updates != null) {
@@ -143,7 +143,7 @@ public class EngineTests {
         }
 
         @Override
-        public void update(double deltaTime) {
+        public void step(double deltaTime) {
             for (int i = 0; i < entities.size(); ++i) {
                 if (i % 2 == 0) {
                     entities.get(i).getComponent(CounterComponent.class).counter++;
@@ -288,7 +288,7 @@ public class EngineTests {
             Assert.assertEquals(i, systemA.updateCalls);
             Assert.assertEquals(i, systemB.updateCalls);
 
-            engine.update(deltaTime);
+            engine.step(deltaTime);
 
             Assert.assertEquals(i + 1, systemA.updateCalls);
             Assert.assertEquals(i + 1, systemB.updateCalls);
@@ -300,7 +300,7 @@ public class EngineTests {
             Assert.assertEquals(i + numUpdates, systemA.updateCalls);
             Assert.assertEquals(numUpdates, systemB.updateCalls);
 
-            engine.update(deltaTime);
+            engine.step(deltaTime);
 
             Assert.assertEquals(i + 1 + numUpdates, systemA.updateCalls);
             Assert.assertEquals(numUpdates, systemB.updateCalls);
@@ -321,7 +321,7 @@ public class EngineTests {
         engine.addSystem(system1);
         engine.addSystem(system2);
 
-        engine.update(deltaTime);
+        engine.step(deltaTime);
 
         int previous = Integer.MIN_VALUE;
 
@@ -353,8 +353,8 @@ public class EngineTests {
         int numUpdates = 10;
 
         for (int i = 0; i < numUpdates; ++i) {
-            system.setProcessing(i % 2 == 0);
-            engine.update(deltaTime);
+            system.setEnabled(i % 2 == 0);
+            engine.step(deltaTime);
             Assert.assertEquals(i / 2 + 1, system.updateCalls);
         }
     }
@@ -554,7 +554,7 @@ public class EngineTests {
             Assert.assertEquals(0, entities.get(i).getComponent(CounterComponent.class).counter);
         }
 
-        engine.update(deltaTime);
+        engine.step(deltaTime);
 
         for (int i = 0; i < entities.size(); ++i) {
             Assert.assertEquals(1, entities.get(i).getComponent(CounterComponent.class).counter);
@@ -672,12 +672,12 @@ public class EngineTests {
         engine.addEntityListener(Family.all(ComponentA.class).get(), removedListener);
 
         engine.addSystem(addSystem);
-        engine.update(deltaTime);
+        engine.step(deltaTime);
         addedListener.checkEntityListenerNonUpdate();
         engine.removeSystem(addSystem);
 
         engine.addSystem(removeSystem);
-        engine.update(deltaTime);
+        engine.step(deltaTime);
         removedListener.checkEntityListenerNonUpdate();
         engine.removeSystem(removeSystem);
     }
@@ -743,13 +743,13 @@ public class EngineTests {
         // listeners cascade creations (up to 20)
         EntitySystem addSystem = new EntitySystem() {
             @Override
-            public void update(double deltaTime) {
+            public void step(double deltaTime) {
                 getEngine().addEntity(new Entity());
             }
         };
 
         engine.addSystem(addSystem);
-        engine.update(deltaTime);
+        engine.step(deltaTime);
         engine.removeSystem(addSystem);
         addedListener.checkEntityListenerNonUpdate();
         removedListener.checkEntityListenerUpdate();
@@ -758,13 +758,13 @@ public class EngineTests {
         // listeners cascade deletion (up to 0)
         EntitySystem removeSystem = new EntitySystem() {
             @Override
-            public void update(double deltaTime) {
+            public void step(double deltaTime) {
                 getEngine().removeEntity(entities.peek());
             }
         };
 
         engine.addSystem(removeSystem);
-        engine.update(deltaTime);
+        engine.step(deltaTime);
         engine.removeSystem(removeSystem);
         addedListener.checkEntityListenerUpdate();
         removedListener.checkEntityListenerNonUpdate();
@@ -863,7 +863,7 @@ public class EngineTests {
             engine.addEntity(e);
         }
 
-        engine.update(0);
+        engine.step(0);
     }
 
     @Test
@@ -909,16 +909,16 @@ public class EngineTests {
             boolean duringCallback;
 
             @Override
-            public void update(double deltaTime) {
+            public void step(double deltaTime) {
                 if (!duringCallback) {
                     duringCallback = true;
-                    getEngine().update(deltaTime);
+                    getEngine().step(deltaTime);
                     duringCallback = false;
                 }
             }
         });
 
-        engine.update(deltaTime);
+        engine.step(deltaTime);
     }
 
     @Test
@@ -927,7 +927,7 @@ public class EngineTests {
 
         EntitySystem system = new EntitySystem() {
             @Override
-            public void update(double deltaTime) {
+            public void step(double deltaTime) {
                 throw new GdxRuntimeException("throwing");
             }
         };
@@ -937,7 +937,7 @@ public class EngineTests {
         boolean thrown = false;
 
         try {
-            engine.update(0.0f);
+            engine.step(0.0f);
         } catch (Exception e) {
             thrown = true;
         }
@@ -946,7 +946,7 @@ public class EngineTests {
 
         engine.removeSystem(system);
 
-        engine.update(0.0f);
+        engine.step(0.0f);
     }
 
     @Test

@@ -89,9 +89,7 @@ class EntityManager {
     }
 
     public void processPendingOperations() {
-        for (int i = 0; i < pendingOperations.size; ++i) {
-            EntityOperation operation = pendingOperations.get(i);
-
+        for (EntityOperation operation : pendingOperations) {
             switch (operation.type) {
                 case Add:
                     addEntityInternal(operation.entity);
