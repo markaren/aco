@@ -17,20 +17,16 @@ abstract class CoroutineSystem @JvmOverloads constructor(
     /**
      * @return set of entities processed by the system
      */
-    var entities: ImmutableArray<Entity>? = null
+    lateinit var entities: ImmutableArray<Entity>
         private set
 
     override fun addedToEngine(engine: Engine) {
         entities = engine.getEntitiesFor(family)
     }
 
-    override fun removedFromEngine(engine: Engine) {
-        entities = null
-    }
-
     override fun step(deltaTime: Double) {
         runBlocking(Dispatchers.Default) {
-            entities!!.forEach { entity ->
+            entities.forEach { entity ->
                 launch {
                     processEntity(entity, deltaTime)
                 }

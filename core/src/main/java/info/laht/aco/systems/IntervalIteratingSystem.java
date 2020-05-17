@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link EntitySystem} that processes a {@link Family} of entities not once per frame, but after a given interval.
- * Entity processing logic should be placed in {@link IntervalIteratingSystem#processEntity(Entity, double)}.
+ * Entity processing logic should be placed in {@link IntervalIteratingSystem#processEntity(Entity, double, double)}.
  *
  * @author David Saltares
  */
@@ -36,7 +36,7 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 
     /**
      * @param family   represents the collection of family the system should process
-     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval(double)}.
+     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval(double, double)}.
      */
     public IntervalIteratingSystem(Family family, double interval) {
         this(family, interval, 0);
@@ -44,7 +44,7 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 
     /**
      * @param family   represents the collection of family the system should process
-     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval(double)}.
+     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval(double, double)}.
      * @param priority
      */
     public IntervalIteratingSystem(Family family, double interval, int priority) {
@@ -59,9 +59,9 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
     }
 
     @Override
-    protected void updateInterval(double currentTime) {
+    protected void updateInterval(double currentTime, double deltaTime) {
         for (Entity entity : entities) {
-            processEntity(entity, currentTime);
+            processEntity(entity, currentTime, deltaTime);
         }
     }
 
@@ -84,6 +84,6 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
      *
      * @param entity
      */
-    protected abstract void processEntity(@NotNull Entity entity, double currentTime);
+    protected abstract void processEntity(@NotNull Entity entity, double currentTime, double deltaTime);
 
 }

@@ -18,6 +18,7 @@ package info.laht.aco.systems;
 
 import info.laht.aco.core.*;
 import info.laht.aco.utils.ImmutableArray;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,6 +31,7 @@ public class IntervalIteratingTest {
 	}
 
 	private static class IntervalIteratingSystemSpy extends IntervalIteratingSystem {
+
 		private final ComponentMapper<IntervalComponentSpy> im;
 
 		public IntervalIteratingSystemSpy () {
@@ -39,7 +41,7 @@ public class IntervalIteratingTest {
 		}
 
 		@Override
-		protected void processEntity (Entity entity, double currentTime) {
+		protected void processEntity (@NotNull Entity entity, double currentTime, double deltaTime) {
 			im.get(entity).numUpdates++;
 		}
 	}

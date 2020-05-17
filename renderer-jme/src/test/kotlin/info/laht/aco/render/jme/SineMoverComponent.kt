@@ -22,12 +22,11 @@ class SineMoverSystem(
     Family.all(SineMoverComponent::class.java, TransformComponent::class.java).get(), interval
 ) {
 
+    private val tmp = Vector3d()
     private val sm = ComponentMapper.getFor(SineMoverComponent::class.java)
     private val tm = ComponentMapper.getFor(TransformComponent::class.java)
 
-    private val tmp = Vector3d()
-
-    override fun processEntity(entity: Entity, currentTime: Double) {
+    override fun processEntity(entity: Entity, currentTime: Double, deltaTime: Double) {
 
         val s = sm.get(entity)
         val t = tm.get(entity)

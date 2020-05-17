@@ -53,8 +53,6 @@ class DefaultEngineRunner(
     var callback: Callback? = null
     private var predicate: Predicate? = null
 
-    private var t0: Long by Delegates.notNull()
-
     val isStarted: Boolean
         get() {
             return thread != null
@@ -69,7 +67,6 @@ class DefaultEngineRunner(
     override fun start() {
         if (this.thread == null) {
             this.stop.set(false)
-            this.t0 = System.currentTimeMillis()
             this.thread = Thread(Runner()).apply { start() }
         } else {
             throw IllegalStateException("Start can only be invoked once!")
@@ -119,6 +116,7 @@ class DefaultEngineRunner(
 
             val inputThread = ConsoleInputReadTask().apply { start() }
 
+            val t0 = System.currentTimeMillis()
             while (!stop.get() && predicate?.invoke(engine) != true) {
 
                 if (!paused.get()) {
@@ -136,7 +134,6 @@ class DefaultEngineRunner(
                             Thread.sleep(timeToSleep)
                         }
                     }
-
 
                     callback?.invoke()
 

@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link EntitySystem} that does not run its update logic every call to {@link EntitySystem#step(double)}, but after a
- * given interval. The actual logic should be placed in {@link IntervalSystem#updateInterval(double)}.
+ * given interval. The actual logic should be placed in {@link IntervalSystem#updateInterval(double, double)}.
  *
  * @author David Saltares
  */
@@ -33,14 +33,14 @@ public abstract class IntervalSystem extends EntitySystem {
     private double currentTime;
 
     /**
-     * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval(double)}.
+     * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval(double, double)}.
      */
     public IntervalSystem(double interval) {
         this(interval, 0);
     }
 
     /**
-     * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval(double)}.
+     * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval(double, double)}.
      * @param priority
      */
     public IntervalSystem(double interval, int priority) {
@@ -65,7 +65,7 @@ public abstract class IntervalSystem extends EntitySystem {
 
         while (accumulator >= interval) {
             accumulator -= interval;
-            updateInterval(currentTime);
+            updateInterval(currentTime ,deltaTime);
             currentTime += interval;
         }
     }
@@ -73,6 +73,6 @@ public abstract class IntervalSystem extends EntitySystem {
     /**
      * The processing logic of the system should be placed here.
      */
-    protected abstract void updateInterval(double currentTime);
+    protected abstract void updateInterval(double currentTime, double deltaTime);
 
 }

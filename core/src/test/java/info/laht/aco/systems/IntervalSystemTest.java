@@ -33,7 +33,7 @@ public class IntervalSystemTest {
 		}
 
 		@Override
-		protected void updateInterval (double currentTime) {
+		protected void updateInterval (double currentTime, double deltaTime) {
 			++numUpdates;
 		}
 	}

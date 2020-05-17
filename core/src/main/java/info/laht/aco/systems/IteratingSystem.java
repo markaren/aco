@@ -95,5 +95,4 @@ public abstract class IteratingSystem extends EntitySystem {
      */
     protected abstract void processEntity(@NotNull Entity entity, double deltaTime);
 
-    protected void processEntityFixed(@NotNull Entity entity, double deltaTime) {}
 }
