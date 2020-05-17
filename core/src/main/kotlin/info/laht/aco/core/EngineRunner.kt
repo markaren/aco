@@ -25,7 +25,7 @@ interface EngineRunner {
 
 }
 
-class DefaultEngineRunner(
+class HeadlessEngineRunner(
     val engine: Engine
 ): EngineRunner {
 
@@ -109,14 +109,16 @@ class DefaultEngineRunner(
 
     private inner class Runner : Runnable {
 
-        private val clock = Clock()
+
 
         @ExperimentalTime
         override fun run() {
 
-            val inputThread = ConsoleInputReadTask().apply { start() }
+            val inputThread = ConsoleInputReadTask().apply {
+                start()
+            }
 
-            val t0 = System.currentTimeMillis()
+            val clock = Clock()
             while (!stop.get() && predicate?.invoke(engine) != true) {
 
                 if (!paused.get()) {
@@ -124,16 +126,8 @@ class DefaultEngineRunner(
                     engine.step(clock.getDelta())
 
                     simulationClock = engine.currentTime - engine.startTime
-                    wallClock = ((System.currentTimeMillis() - t0).toDouble() / 1000.0) - timePaused
+                    wallClock = clock.elapsedTime_ - timePaused
                     actualRealTimeFactor = simulationClock / wallClock
-
-                    if (enableRealTimeTarget.get()) {
-                        val diff = (simulationClock * inverseTargetRealTimeFactor) - wallClock
-                        if (diff > 0) {
-                            val timeToSleep = (diff * 1000.0).toLong()
-                            Thread.sleep(timeToSleep)
-                        }
-                    }
 
                     callback?.invoke()
 

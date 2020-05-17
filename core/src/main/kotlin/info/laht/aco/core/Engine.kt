@@ -259,19 +259,19 @@ open class Engine @JvmOverloads constructor(
         if (!this.isInitialized) {
             init()
         }
-        @Suppress("NAME_SHADOWING") val deltaTime = deltaTime * realtimeFactor
+        val scaledDeltaTime = deltaTime * realtimeFactor
         updating = true
         try {
             for (system in systems) {
                 if (system.isEnabled) {
-                    system.step(deltaTime)
+                    system.step(scaledDeltaTime)
                 }
                 while (componentOperationHandler.hasOperationsToProcess() || entityManager.hasPendingOperations()) {
                     componentOperationHandler.processOperations()
                     entityManager.processPendingOperations()
                 }
             }
-            currentTime += deltaTime
+            currentTime += scaledDeltaTime
             stepNumber += 1
             for (system in systems) {
                 if (system.isEnabled) {
