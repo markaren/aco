@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 import com.badlogic.gdx.utils.ReflectionPool;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Supports {@link Entity} and {@link Component} pooling. This improves performance in environments where creating/deleting
@@ -65,6 +66,7 @@ public class PooledEngine extends Engine {
     /**
      * @return Clean {@link Entity} from the Engine pool. In order to add it to the {@link Engine}, use {@link #addEntity(Entity)}. @{@link Override {@link Engine#createEntity()}}
      */
+    @NotNull
     @Override
     public Entity createEntity() {
         return entityPool.obtain();
@@ -76,7 +78,7 @@ public class PooledEngine extends Engine {
      * Overrides the default implementation of Engine (creating a new Object)
      */
     @Override
-    public <T extends Component> T createComponent(Class<T> componentType) {
+    public <T extends Component> T createComponent(@NotNull Class<T> componentType) {
         return componentPools.obtain(componentType);
     }
 
@@ -90,7 +92,7 @@ public class PooledEngine extends Engine {
     }
 
     @Override
-    protected void removeEntityInternal(Entity entity) {
+    protected void removeEntityInternal(@NotNull Entity entity) {
         super.removeEntityInternal(entity);
 
         if (entity instanceof PooledEntity) {

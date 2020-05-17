@@ -27,8 +27,7 @@ fun main() {
     }
     engine.addEntity(sphere)
 
-
-    engine.addSystem(SineMoverSystem())
+    engine.addSystem(SineMoverSystem(0.01))
 
     val runner = JmeEngineRunner(engine)
     runner.start()

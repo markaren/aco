@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link EntitySystem} that processes a {@link Family} of entities not once per frame, but after a given interval.
- * Entity processing logic should be placed in {@link IntervalIteratingSystem#processEntity(Entity)}.
+ * Entity processing logic should be placed in {@link IntervalIteratingSystem#processEntity(Entity, double)}.
  *
  * @author David Saltares
  */
@@ -36,7 +36,7 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 
     /**
      * @param family   represents the collection of family the system should process
-     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval()}.
+     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval(double)}.
      */
     public IntervalIteratingSystem(Family family, double interval) {
         this(family, interval, 0);
@@ -44,7 +44,7 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 
     /**
      * @param family   represents the collection of family the system should process
-     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval()}.
+     * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval(double)}.
      * @param priority
      */
     public IntervalIteratingSystem(Family family, double interval, int priority) {
@@ -53,14 +53,15 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
     }
 
     @Override
-    public void addedToEngine(Engine engine) {
+    public void addedToEngine(@NotNull Engine engine) {
+        super.addedToEngine(engine);
         entities = engine.getEntitiesFor(family);
     }
 
     @Override
-    protected void updateInterval() {
-        for (int i = 0; i < entities.size(); ++i) {
-            processEntity(entities.get(i));
+    protected void updateInterval(double currentTime) {
+        for (Entity entity : entities) {
+            processEntity(entity, currentTime);
         }
     }
 
@@ -83,6 +84,6 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
      *
      * @param entity
      */
-    protected abstract void processEntity(@NotNull Entity entity);
+    protected abstract void processEntity(@NotNull Entity entity, double currentTime);
 
 }

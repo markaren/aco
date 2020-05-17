@@ -5,7 +5,7 @@ import info.laht.aco.core.ComponentMapper
 import info.laht.aco.core.Entity
 import info.laht.aco.core.Family
 import info.laht.aco.render.TransformComponent
-import info.laht.aco.systems.IteratingSystem
+import info.laht.aco.systems.IntervalIteratingSystem
 import org.joml.Vector3d
 import kotlin.math.PI
 import kotlin.math.sin
@@ -16,8 +16,10 @@ data class SineMoverComponent(
     val phi: Double = 0.0
 ) : Component
 
-class SineMoverSystem : IteratingSystem(
-    Family.all(SineMoverComponent::class.java, TransformComponent::class.java).get()
+class SineMoverSystem(
+    interval: Double
+) : IntervalIteratingSystem(
+    Family.all(SineMoverComponent::class.java, TransformComponent::class.java).get(), interval
 ) {
 
     private val sm = ComponentMapper.getFor(SineMoverComponent::class.java)
@@ -25,13 +27,15 @@ class SineMoverSystem : IteratingSystem(
 
     private val tmp = Vector3d()
 
-    override fun processEntity(entity: Entity, deltaTime: Double) {
+    override fun processEntity(entity: Entity, currentTime: Double) {
 
         val s = sm.get(entity)
         val t = tm.get(entity)
 
         val pos = t.getLocalTranslation(tmp)
-        t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * engine.currentTime + s.phi), pos.z)
+        t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * currentTime + s.phi), pos.z)
+
+        println("t0=${engine.currentTime}, t1=$currentTime")
 
     }
 }

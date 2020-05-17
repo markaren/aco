@@ -39,7 +39,7 @@ public class IntervalIteratingTest {
 		}
 
 		@Override
-		protected void processEntity (Entity entity) {
+		protected void processEntity (Entity entity, double currentTime) {
 			im.get(entity).numUpdates++;
 		}
 	}

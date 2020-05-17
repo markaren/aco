@@ -34,7 +34,7 @@ fun main() {
         add(SineMoverComponent(A=3.0))
         engine.addEntity(this)
     }
-    engine.addSystem(SineMoverSystem())
+    engine.addSystem(SineMoverSystem(0.01))
 
     val runner = JmeEngineRunner(engine)
     runner.start()

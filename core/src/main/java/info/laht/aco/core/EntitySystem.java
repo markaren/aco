@@ -80,6 +80,9 @@ public abstract class EntitySystem {
     protected void step(double deltaTime) {
     }
 
+    protected void fixedStep(double deltaTime) {
+    }
+
     protected void postStep() {
     }
 

@@ -29,7 +29,7 @@ import com.badlogic.gdx.utils.ObjectMap;
  */
 public class Family {
 
-    private static final ObjectMap<String, Family> families = new ObjectMap<String, Family>();
+    private static final ObjectMap<String, Family> families = new ObjectMap<>();
     private static int familyIndex = 0;
     private static final Builder builder = new Builder();
     private static final Bits zeroBits = new Bits();
