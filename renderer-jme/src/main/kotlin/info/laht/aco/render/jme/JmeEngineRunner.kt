@@ -69,9 +69,7 @@ class JmeEngineRunner(
 
             super.viewPort.backgroundColor.set(0.6f, 0.7f, 1f, 1f)
 
-
             setupLights()
-
 
             super.stateManager.attach(object : AbstractAppState() {
                 override fun cleanup() {

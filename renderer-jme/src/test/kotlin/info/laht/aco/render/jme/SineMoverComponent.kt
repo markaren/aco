@@ -34,7 +34,5 @@ class SineMoverSystem(
         val pos = t.getLocalTranslation(tmp)
         t.setLocalTranslation(pos.x, s.A * sin(2 * PI * s.f * currentTime + s.phi), pos.z)
 
-        println("t0=${engine.currentTime}, t1=$currentTime")
-
     }
 }
