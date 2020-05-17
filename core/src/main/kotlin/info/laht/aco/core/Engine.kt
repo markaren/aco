@@ -59,6 +59,7 @@ open class Engine @JvmOverloads constructor(
         private set
     var currentTime: Double = startTime
         private set
+    var realtimeFactor = 1.0
 
     /**
      * Creates a new Entity object.
@@ -258,6 +259,7 @@ open class Engine @JvmOverloads constructor(
         if (!this.isInitialized) {
             init()
         }
+        @Suppress("NAME_SHADOWING") val deltaTime = deltaTime * realtimeFactor
         updating = true
         try {
             for (system in systems) {
